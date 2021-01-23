@@ -73,11 +73,16 @@ def requests():
                         update(id)
                     elif fields == '4':
                         emailAddress.email = input("Введите новый email: ")
-                        type = int(input("Введите тип нового email'a (1-рабочий, 2-личный): "))
-                        emailAddress.type = type - 1
+                        type = None
+                        while type!='1' and type!='2':
+                            type = input("Введите тип нового email'a (1-рабочий, 2-личный): ")
+                            if type!='1' and type!='2':
+                                print("Вы ввели не то значение, попробуйте ещё раз")
+                        emailAddress.type = int(type)- 1
                         customer.emails.append(emailAddress)
                         update(id)
                     else:
+                        print("Выход из меню")
                         flag = False
                         resp = req.request("GET", 'http://localhost:8080/customers')
                         listCustomers.ParseFromString(resp.content)
