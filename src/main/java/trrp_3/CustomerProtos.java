@@ -19,72 +19,57 @@ public final class CustomerProtos {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>required int32 id = 1;</code>
-     * @return Whether the id field is set.
-     */
-    boolean hasId();
-    /**
-     * <code>required int32 id = 1;</code>
+     * <code>int32 id = 1;</code>
      * @return The id.
      */
     int getId();
 
     /**
-     * <code>required string firstName = 2;</code>
-     * @return Whether the firstName field is set.
-     */
-    boolean hasFirstName();
-    /**
-     * <code>required string firstName = 2;</code>
+     * <code>string firstName = 2;</code>
      * @return The firstName.
      */
     java.lang.String getFirstName();
     /**
-     * <code>required string firstName = 2;</code>
+     * <code>string firstName = 2;</code>
      * @return The bytes for firstName.
      */
     com.google.protobuf.ByteString
         getFirstNameBytes();
 
     /**
-     * <code>required string lastName = 3;</code>
-     * @return Whether the lastName field is set.
-     */
-    boolean hasLastName();
-    /**
-     * <code>required string lastName = 3;</code>
+     * <code>string lastName = 3;</code>
      * @return The lastName.
      */
     java.lang.String getLastName();
     /**
-     * <code>required string lastName = 3;</code>
+     * <code>string lastName = 3;</code>
      * @return The bytes for lastName.
      */
     com.google.protobuf.ByteString
         getLastNameBytes();
 
     /**
-     * <code>repeated .trrp_3.Customer.EmailAddress email = 5;</code>
+     * <code>repeated .trrp_3.Customer.EmailAddress emails = 4;</code>
      */
     java.util.List<trrp_3.CustomerProtos.Customer.EmailAddress> 
-        getEmailList();
+        getEmailsList();
     /**
-     * <code>repeated .trrp_3.Customer.EmailAddress email = 5;</code>
+     * <code>repeated .trrp_3.Customer.EmailAddress emails = 4;</code>
      */
-    trrp_3.CustomerProtos.Customer.EmailAddress getEmail(int index);
+    trrp_3.CustomerProtos.Customer.EmailAddress getEmails(int index);
     /**
-     * <code>repeated .trrp_3.Customer.EmailAddress email = 5;</code>
+     * <code>repeated .trrp_3.Customer.EmailAddress emails = 4;</code>
      */
-    int getEmailCount();
+    int getEmailsCount();
     /**
-     * <code>repeated .trrp_3.Customer.EmailAddress email = 5;</code>
+     * <code>repeated .trrp_3.Customer.EmailAddress emails = 4;</code>
      */
     java.util.List<? extends trrp_3.CustomerProtos.Customer.EmailAddressOrBuilder> 
-        getEmailOrBuilderList();
+        getEmailsOrBuilderList();
     /**
-     * <code>repeated .trrp_3.Customer.EmailAddress email = 5;</code>
+     * <code>repeated .trrp_3.Customer.EmailAddress emails = 4;</code>
      */
-    trrp_3.CustomerProtos.Customer.EmailAddressOrBuilder getEmailOrBuilder(
+    trrp_3.CustomerProtos.Customer.EmailAddressOrBuilder getEmailsOrBuilder(
         int index);
   }
   /**
@@ -102,7 +87,7 @@ public final class CustomerProtos {
     private Customer() {
       firstName_ = "";
       lastName_ = "";
-      email_ = java.util.Collections.emptyList();
+      emails_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
@@ -137,29 +122,29 @@ public final class CustomerProtos {
               done = true;
               break;
             case 8: {
-              bitField0_ |= 0x00000001;
+
               id_ = input.readInt32();
               break;
             }
             case 18: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000002;
-              firstName_ = bs;
+              java.lang.String s = input.readStringRequireUtf8();
+
+              firstName_ = s;
               break;
             }
             case 26: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000004;
-              lastName_ = bs;
+              java.lang.String s = input.readStringRequireUtf8();
+
+              lastName_ = s;
               break;
             }
-            case 42: {
-              if (!((mutable_bitField0_ & 0x00000008) != 0)) {
-                email_ = new java.util.ArrayList<trrp_3.CustomerProtos.Customer.EmailAddress>();
-                mutable_bitField0_ |= 0x00000008;
+            case 34: {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
+                emails_ = new java.util.ArrayList<trrp_3.CustomerProtos.Customer.EmailAddress>();
+                mutable_bitField0_ |= 0x00000001;
               }
-              email_.add(
-                  input.readMessage(trrp_3.CustomerProtos.Customer.EmailAddress.PARSER, extensionRegistry));
+              emails_.add(
+                  input.readMessage(trrp_3.CustomerProtos.Customer.EmailAddress.parser(), extensionRegistry));
               break;
             }
             default: {
@@ -177,8 +162,8 @@ public final class CustomerProtos {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000008) != 0)) {
-          email_ = java.util.Collections.unmodifiableList(email_);
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
+          emails_ = java.util.Collections.unmodifiableList(emails_);
         }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
@@ -203,26 +188,31 @@ public final class CustomerProtos {
     public enum EmailType
         implements com.google.protobuf.ProtocolMessageEnum {
       /**
+       * <code>PROFESSIONAL = 0;</code>
+       */
+      PROFESSIONAL(0),
+      /**
        * <code>PRIVATE = 1;</code>
        */
       PRIVATE(1),
-      /**
-       * <code>PROFESSIONAL = 2;</code>
-       */
-      PROFESSIONAL(2),
+      UNRECOGNIZED(-1),
       ;
 
+      /**
+       * <code>PROFESSIONAL = 0;</code>
+       */
+      public static final int PROFESSIONAL_VALUE = 0;
       /**
        * <code>PRIVATE = 1;</code>
        */
       public static final int PRIVATE_VALUE = 1;
-      /**
-       * <code>PROFESSIONAL = 2;</code>
-       */
-      public static final int PROFESSIONAL_VALUE = 2;
 
 
       public final int getNumber() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalArgumentException(
+              "Can't get the number of an unknown enum value.");
+        }
         return value;
       }
 
@@ -242,8 +232,8 @@ public final class CustomerProtos {
        */
       public static EmailType forNumber(int value) {
         switch (value) {
+          case 0: return PROFESSIONAL;
           case 1: return PRIVATE;
-          case 2: return PROFESSIONAL;
           default: return null;
         }
       }
@@ -262,6 +252,10 @@ public final class CustomerProtos {
 
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalStateException(
+              "Can't get the descriptor of an unrecognized enum value.");
+        }
         return getDescriptor().getValues().get(ordinal());
       }
       public final com.google.protobuf.Descriptors.EnumDescriptor
@@ -281,6 +275,9 @@ public final class CustomerProtos {
           throw new java.lang.IllegalArgumentException(
             "EnumValueDescriptor is not for this type.");
         }
+        if (desc.getIndex() == -1) {
+          return UNRECOGNIZED;
+        }
         return VALUES[desc.getIndex()];
       }
 
@@ -298,29 +295,24 @@ public final class CustomerProtos {
         com.google.protobuf.MessageOrBuilder {
 
       /**
-       * <code>required string email = 1;</code>
-       * @return Whether the email field is set.
-       */
-      boolean hasEmail();
-      /**
-       * <code>required string email = 1;</code>
+       * <code>string email = 1;</code>
        * @return The email.
        */
       java.lang.String getEmail();
       /**
-       * <code>required string email = 1;</code>
+       * <code>string email = 1;</code>
        * @return The bytes for email.
        */
       com.google.protobuf.ByteString
           getEmailBytes();
 
       /**
-       * <code>optional .trrp_3.Customer.EmailType type = 2 [default = PROFESSIONAL];</code>
-       * @return Whether the type field is set.
+       * <code>.trrp_3.Customer.EmailType type = 2;</code>
+       * @return The enum numeric value on the wire for type.
        */
-      boolean hasType();
+      int getTypeValue();
       /**
-       * <code>optional .trrp_3.Customer.EmailType type = 2 [default = PROFESSIONAL];</code>
+       * <code>.trrp_3.Customer.EmailType type = 2;</code>
        * @return The type.
        */
       trrp_3.CustomerProtos.Customer.EmailType getType();
@@ -339,7 +331,7 @@ public final class CustomerProtos {
       }
       private EmailAddress() {
         email_ = "";
-        type_ = 2;
+        type_ = 0;
       }
 
       @java.lang.Override
@@ -362,7 +354,6 @@ public final class CustomerProtos {
         if (extensionRegistry == null) {
           throw new java.lang.NullPointerException();
         }
-        int mutable_bitField0_ = 0;
         com.google.protobuf.UnknownFieldSet.Builder unknownFields =
             com.google.protobuf.UnknownFieldSet.newBuilder();
         try {
@@ -374,21 +365,15 @@ public final class CustomerProtos {
                 done = true;
                 break;
               case 10: {
-                com.google.protobuf.ByteString bs = input.readBytes();
-                bitField0_ |= 0x00000001;
-                email_ = bs;
+                java.lang.String s = input.readStringRequireUtf8();
+
+                email_ = s;
                 break;
               }
               case 16: {
                 int rawValue = input.readEnum();
-                  @SuppressWarnings("deprecation")
-                trrp_3.CustomerProtos.Customer.EmailType value = trrp_3.CustomerProtos.Customer.EmailType.valueOf(rawValue);
-                if (value == null) {
-                  unknownFields.mergeVarintField(2, rawValue);
-                } else {
-                  bitField0_ |= 0x00000002;
-                  type_ = rawValue;
-                }
+
+                type_ = rawValue;
                 break;
               }
               default: {
@@ -423,19 +408,10 @@ public final class CustomerProtos {
                 trrp_3.CustomerProtos.Customer.EmailAddress.class, trrp_3.CustomerProtos.Customer.EmailAddress.Builder.class);
       }
 
-      private int bitField0_;
       public static final int EMAIL_FIELD_NUMBER = 1;
       private volatile java.lang.Object email_;
       /**
-       * <code>required string email = 1;</code>
-       * @return Whether the email field is set.
-       */
-      @java.lang.Override
-      public boolean hasEmail() {
-        return ((bitField0_ & 0x00000001) != 0);
-      }
-      /**
-       * <code>required string email = 1;</code>
+       * <code>string email = 1;</code>
        * @return The email.
        */
       @java.lang.Override
@@ -447,14 +423,12 @@ public final class CustomerProtos {
           com.google.protobuf.ByteString bs = 
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            email_ = s;
-          }
+          email_ = s;
           return s;
         }
       }
       /**
-       * <code>required string email = 1;</code>
+       * <code>string email = 1;</code>
        * @return The bytes for email.
        */
       @java.lang.Override
@@ -475,20 +449,20 @@ public final class CustomerProtos {
       public static final int TYPE_FIELD_NUMBER = 2;
       private int type_;
       /**
-       * <code>optional .trrp_3.Customer.EmailType type = 2 [default = PROFESSIONAL];</code>
-       * @return Whether the type field is set.
+       * <code>.trrp_3.Customer.EmailType type = 2;</code>
+       * @return The enum numeric value on the wire for type.
        */
-      @java.lang.Override public boolean hasType() {
-        return ((bitField0_ & 0x00000002) != 0);
+      @java.lang.Override public int getTypeValue() {
+        return type_;
       }
       /**
-       * <code>optional .trrp_3.Customer.EmailType type = 2 [default = PROFESSIONAL];</code>
+       * <code>.trrp_3.Customer.EmailType type = 2;</code>
        * @return The type.
        */
       @java.lang.Override public trrp_3.CustomerProtos.Customer.EmailType getType() {
         @SuppressWarnings("deprecation")
         trrp_3.CustomerProtos.Customer.EmailType result = trrp_3.CustomerProtos.Customer.EmailType.valueOf(type_);
-        return result == null ? trrp_3.CustomerProtos.Customer.EmailType.PROFESSIONAL : result;
+        return result == null ? trrp_3.CustomerProtos.Customer.EmailType.UNRECOGNIZED : result;
       }
 
       private byte memoizedIsInitialized = -1;
@@ -498,10 +472,6 @@ public final class CustomerProtos {
         if (isInitialized == 1) return true;
         if (isInitialized == 0) return false;
 
-        if (!hasEmail()) {
-          memoizedIsInitialized = 0;
-          return false;
-        }
         memoizedIsInitialized = 1;
         return true;
       }
@@ -509,10 +479,10 @@ public final class CustomerProtos {
       @java.lang.Override
       public void writeTo(com.google.protobuf.CodedOutputStream output)
                           throws java.io.IOException {
-        if (((bitField0_ & 0x00000001) != 0)) {
+        if (!getEmailBytes().isEmpty()) {
           com.google.protobuf.GeneratedMessageV3.writeString(output, 1, email_);
         }
-        if (((bitField0_ & 0x00000002) != 0)) {
+        if (type_ != trrp_3.CustomerProtos.Customer.EmailType.PROFESSIONAL.getNumber()) {
           output.writeEnum(2, type_);
         }
         unknownFields.writeTo(output);
@@ -524,10 +494,10 @@ public final class CustomerProtos {
         if (size != -1) return size;
 
         size = 0;
-        if (((bitField0_ & 0x00000001) != 0)) {
+        if (!getEmailBytes().isEmpty()) {
           size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, email_);
         }
-        if (((bitField0_ & 0x00000002) != 0)) {
+        if (type_ != trrp_3.CustomerProtos.Customer.EmailType.PROFESSIONAL.getNumber()) {
           size += com.google.protobuf.CodedOutputStream
             .computeEnumSize(2, type_);
         }
@@ -546,15 +516,9 @@ public final class CustomerProtos {
         }
         trrp_3.CustomerProtos.Customer.EmailAddress other = (trrp_3.CustomerProtos.Customer.EmailAddress) obj;
 
-        if (hasEmail() != other.hasEmail()) return false;
-        if (hasEmail()) {
-          if (!getEmail()
-              .equals(other.getEmail())) return false;
-        }
-        if (hasType() != other.hasType()) return false;
-        if (hasType()) {
-          if (type_ != other.type_) return false;
-        }
+        if (!getEmail()
+            .equals(other.getEmail())) return false;
+        if (type_ != other.type_) return false;
         if (!unknownFields.equals(other.unknownFields)) return false;
         return true;
       }
@@ -566,14 +530,10 @@ public final class CustomerProtos {
         }
         int hash = 41;
         hash = (19 * hash) + getDescriptor().hashCode();
-        if (hasEmail()) {
-          hash = (37 * hash) + EMAIL_FIELD_NUMBER;
-          hash = (53 * hash) + getEmail().hashCode();
-        }
-        if (hasType()) {
-          hash = (37 * hash) + TYPE_FIELD_NUMBER;
-          hash = (53 * hash) + type_;
-        }
+        hash = (37 * hash) + EMAIL_FIELD_NUMBER;
+        hash = (53 * hash) + getEmail().hashCode();
+        hash = (37 * hash) + TYPE_FIELD_NUMBER;
+        hash = (53 * hash) + type_;
         hash = (29 * hash) + unknownFields.hashCode();
         memoizedHashCode = hash;
         return hash;
@@ -708,9 +668,9 @@ public final class CustomerProtos {
         public Builder clear() {
           super.clear();
           email_ = "";
-          bitField0_ = (bitField0_ & ~0x00000001);
-          type_ = 2;
-          bitField0_ = (bitField0_ & ~0x00000002);
+
+          type_ = 0;
+
           return this;
         }
 
@@ -737,17 +697,8 @@ public final class CustomerProtos {
         @java.lang.Override
         public trrp_3.CustomerProtos.Customer.EmailAddress buildPartial() {
           trrp_3.CustomerProtos.Customer.EmailAddress result = new trrp_3.CustomerProtos.Customer.EmailAddress(this);
-          int from_bitField0_ = bitField0_;
-          int to_bitField0_ = 0;
-          if (((from_bitField0_ & 0x00000001) != 0)) {
-            to_bitField0_ |= 0x00000001;
-          }
           result.email_ = email_;
-          if (((from_bitField0_ & 0x00000002) != 0)) {
-            to_bitField0_ |= 0x00000002;
-          }
           result.type_ = type_;
-          result.bitField0_ = to_bitField0_;
           onBuilt();
           return result;
         }
@@ -796,13 +747,12 @@ public final class CustomerProtos {
 
         public Builder mergeFrom(trrp_3.CustomerProtos.Customer.EmailAddress other) {
           if (other == trrp_3.CustomerProtos.Customer.EmailAddress.getDefaultInstance()) return this;
-          if (other.hasEmail()) {
-            bitField0_ |= 0x00000001;
+          if (!other.getEmail().isEmpty()) {
             email_ = other.email_;
             onChanged();
           }
-          if (other.hasType()) {
-            setType(other.getType());
+          if (other.type_ != 0) {
+            setTypeValue(other.getTypeValue());
           }
           this.mergeUnknownFields(other.unknownFields);
           onChanged();
@@ -811,9 +761,6 @@ public final class CustomerProtos {
 
         @java.lang.Override
         public final boolean isInitialized() {
-          if (!hasEmail()) {
-            return false;
-          }
           return true;
         }
 
@@ -835,18 +782,10 @@ public final class CustomerProtos {
           }
           return this;
         }
-        private int bitField0_;
 
         private java.lang.Object email_ = "";
         /**
-         * <code>required string email = 1;</code>
-         * @return Whether the email field is set.
-         */
-        public boolean hasEmail() {
-          return ((bitField0_ & 0x00000001) != 0);
-        }
-        /**
-         * <code>required string email = 1;</code>
+         * <code>string email = 1;</code>
          * @return The email.
          */
         public java.lang.String getEmail() {
@@ -855,16 +794,14 @@ public final class CustomerProtos {
             com.google.protobuf.ByteString bs =
                 (com.google.protobuf.ByteString) ref;
             java.lang.String s = bs.toStringUtf8();
-            if (bs.isValidUtf8()) {
-              email_ = s;
-            }
+            email_ = s;
             return s;
           } else {
             return (java.lang.String) ref;
           }
         }
         /**
-         * <code>required string email = 1;</code>
+         * <code>string email = 1;</code>
          * @return The bytes for email.
          */
         public com.google.protobuf.ByteString
@@ -881,7 +818,7 @@ public final class CustomerProtos {
           }
         }
         /**
-         * <code>required string email = 1;</code>
+         * <code>string email = 1;</code>
          * @param value The email to set.
          * @return This builder for chaining.
          */
@@ -890,23 +827,23 @@ public final class CustomerProtos {
           if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000001;
+  
           email_ = value;
           onChanged();
           return this;
         }
         /**
-         * <code>required string email = 1;</code>
+         * <code>string email = 1;</code>
          * @return This builder for chaining.
          */
         public Builder clearEmail() {
-          bitField0_ = (bitField0_ & ~0x00000001);
+          
           email_ = getDefaultInstance().getEmail();
           onChanged();
           return this;
         }
         /**
-         * <code>required string email = 1;</code>
+         * <code>string email = 1;</code>
          * @param value The bytes for email to set.
          * @return This builder for chaining.
          */
@@ -915,32 +852,44 @@ public final class CustomerProtos {
           if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000001;
+  checkByteStringIsUtf8(value);
+          
           email_ = value;
           onChanged();
           return this;
         }
 
-        private int type_ = 2;
+        private int type_ = 0;
         /**
-         * <code>optional .trrp_3.Customer.EmailType type = 2 [default = PROFESSIONAL];</code>
-         * @return Whether the type field is set.
+         * <code>.trrp_3.Customer.EmailType type = 2;</code>
+         * @return The enum numeric value on the wire for type.
          */
-        @java.lang.Override public boolean hasType() {
-          return ((bitField0_ & 0x00000002) != 0);
+        @java.lang.Override public int getTypeValue() {
+          return type_;
         }
         /**
-         * <code>optional .trrp_3.Customer.EmailType type = 2 [default = PROFESSIONAL];</code>
+         * <code>.trrp_3.Customer.EmailType type = 2;</code>
+         * @param value The enum numeric value on the wire for type to set.
+         * @return This builder for chaining.
+         */
+        public Builder setTypeValue(int value) {
+          
+          type_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>.trrp_3.Customer.EmailType type = 2;</code>
          * @return The type.
          */
         @java.lang.Override
         public trrp_3.CustomerProtos.Customer.EmailType getType() {
           @SuppressWarnings("deprecation")
           trrp_3.CustomerProtos.Customer.EmailType result = trrp_3.CustomerProtos.Customer.EmailType.valueOf(type_);
-          return result == null ? trrp_3.CustomerProtos.Customer.EmailType.PROFESSIONAL : result;
+          return result == null ? trrp_3.CustomerProtos.Customer.EmailType.UNRECOGNIZED : result;
         }
         /**
-         * <code>optional .trrp_3.Customer.EmailType type = 2 [default = PROFESSIONAL];</code>
+         * <code>.trrp_3.Customer.EmailType type = 2;</code>
          * @param value The type to set.
          * @return This builder for chaining.
          */
@@ -948,18 +897,18 @@ public final class CustomerProtos {
           if (value == null) {
             throw new NullPointerException();
           }
-          bitField0_ |= 0x00000002;
+          
           type_ = value.getNumber();
           onChanged();
           return this;
         }
         /**
-         * <code>optional .trrp_3.Customer.EmailType type = 2 [default = PROFESSIONAL];</code>
+         * <code>.trrp_3.Customer.EmailType type = 2;</code>
          * @return This builder for chaining.
          */
         public Builder clearType() {
-          bitField0_ = (bitField0_ & ~0x00000002);
-          type_ = 2;
+          
+          type_ = 0;
           onChanged();
           return this;
         }
@@ -989,7 +938,7 @@ public final class CustomerProtos {
         return DEFAULT_INSTANCE;
       }
 
-      @java.lang.Deprecated public static final com.google.protobuf.Parser<EmailAddress>
+      private static final com.google.protobuf.Parser<EmailAddress>
           PARSER = new com.google.protobuf.AbstractParser<EmailAddress>() {
         @java.lang.Override
         public EmailAddress parsePartialFrom(
@@ -1016,19 +965,10 @@ public final class CustomerProtos {
 
     }
 
-    private int bitField0_;
     public static final int ID_FIELD_NUMBER = 1;
     private int id_;
     /**
-     * <code>required int32 id = 1;</code>
-     * @return Whether the id field is set.
-     */
-    @java.lang.Override
-    public boolean hasId() {
-      return ((bitField0_ & 0x00000001) != 0);
-    }
-    /**
-     * <code>required int32 id = 1;</code>
+     * <code>int32 id = 1;</code>
      * @return The id.
      */
     @java.lang.Override
@@ -1039,15 +979,7 @@ public final class CustomerProtos {
     public static final int FIRSTNAME_FIELD_NUMBER = 2;
     private volatile java.lang.Object firstName_;
     /**
-     * <code>required string firstName = 2;</code>
-     * @return Whether the firstName field is set.
-     */
-    @java.lang.Override
-    public boolean hasFirstName() {
-      return ((bitField0_ & 0x00000002) != 0);
-    }
-    /**
-     * <code>required string firstName = 2;</code>
+     * <code>string firstName = 2;</code>
      * @return The firstName.
      */
     @java.lang.Override
@@ -1059,14 +991,12 @@ public final class CustomerProtos {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          firstName_ = s;
-        }
+        firstName_ = s;
         return s;
       }
     }
     /**
-     * <code>required string firstName = 2;</code>
+     * <code>string firstName = 2;</code>
      * @return The bytes for firstName.
      */
     @java.lang.Override
@@ -1087,15 +1017,7 @@ public final class CustomerProtos {
     public static final int LASTNAME_FIELD_NUMBER = 3;
     private volatile java.lang.Object lastName_;
     /**
-     * <code>required string lastName = 3;</code>
-     * @return Whether the lastName field is set.
-     */
-    @java.lang.Override
-    public boolean hasLastName() {
-      return ((bitField0_ & 0x00000004) != 0);
-    }
-    /**
-     * <code>required string lastName = 3;</code>
+     * <code>string lastName = 3;</code>
      * @return The lastName.
      */
     @java.lang.Override
@@ -1107,14 +1029,12 @@ public final class CustomerProtos {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          lastName_ = s;
-        }
+        lastName_ = s;
         return s;
       }
     }
     /**
-     * <code>required string lastName = 3;</code>
+     * <code>string lastName = 3;</code>
      * @return The bytes for lastName.
      */
     @java.lang.Override
@@ -1132,44 +1052,44 @@ public final class CustomerProtos {
       }
     }
 
-    public static final int EMAIL_FIELD_NUMBER = 5;
-    private java.util.List<trrp_3.CustomerProtos.Customer.EmailAddress> email_;
+    public static final int EMAILS_FIELD_NUMBER = 4;
+    private java.util.List<trrp_3.CustomerProtos.Customer.EmailAddress> emails_;
     /**
-     * <code>repeated .trrp_3.Customer.EmailAddress email = 5;</code>
+     * <code>repeated .trrp_3.Customer.EmailAddress emails = 4;</code>
      */
     @java.lang.Override
-    public java.util.List<trrp_3.CustomerProtos.Customer.EmailAddress> getEmailList() {
-      return email_;
+    public java.util.List<trrp_3.CustomerProtos.Customer.EmailAddress> getEmailsList() {
+      return emails_;
     }
     /**
-     * <code>repeated .trrp_3.Customer.EmailAddress email = 5;</code>
+     * <code>repeated .trrp_3.Customer.EmailAddress emails = 4;</code>
      */
     @java.lang.Override
     public java.util.List<? extends trrp_3.CustomerProtos.Customer.EmailAddressOrBuilder> 
-        getEmailOrBuilderList() {
-      return email_;
+        getEmailsOrBuilderList() {
+      return emails_;
     }
     /**
-     * <code>repeated .trrp_3.Customer.EmailAddress email = 5;</code>
+     * <code>repeated .trrp_3.Customer.EmailAddress emails = 4;</code>
      */
     @java.lang.Override
-    public int getEmailCount() {
-      return email_.size();
+    public int getEmailsCount() {
+      return emails_.size();
     }
     /**
-     * <code>repeated .trrp_3.Customer.EmailAddress email = 5;</code>
+     * <code>repeated .trrp_3.Customer.EmailAddress emails = 4;</code>
      */
     @java.lang.Override
-    public trrp_3.CustomerProtos.Customer.EmailAddress getEmail(int index) {
-      return email_.get(index);
+    public trrp_3.CustomerProtos.Customer.EmailAddress getEmails(int index) {
+      return emails_.get(index);
     }
     /**
-     * <code>repeated .trrp_3.Customer.EmailAddress email = 5;</code>
+     * <code>repeated .trrp_3.Customer.EmailAddress emails = 4;</code>
      */
     @java.lang.Override
-    public trrp_3.CustomerProtos.Customer.EmailAddressOrBuilder getEmailOrBuilder(
+    public trrp_3.CustomerProtos.Customer.EmailAddressOrBuilder getEmailsOrBuilder(
         int index) {
-      return email_.get(index);
+      return emails_.get(index);
     }
 
     private byte memoizedIsInitialized = -1;
@@ -1179,24 +1099,6 @@ public final class CustomerProtos {
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
 
-      if (!hasId()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasFirstName()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasLastName()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      for (int i = 0; i < getEmailCount(); i++) {
-        if (!getEmail(i).isInitialized()) {
-          memoizedIsInitialized = 0;
-          return false;
-        }
-      }
       memoizedIsInitialized = 1;
       return true;
     }
@@ -1204,17 +1106,17 @@ public final class CustomerProtos {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (((bitField0_ & 0x00000001) != 0)) {
+      if (id_ != 0) {
         output.writeInt32(1, id_);
       }
-      if (((bitField0_ & 0x00000002) != 0)) {
+      if (!getFirstNameBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, firstName_);
       }
-      if (((bitField0_ & 0x00000004) != 0)) {
+      if (!getLastNameBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 3, lastName_);
       }
-      for (int i = 0; i < email_.size(); i++) {
-        output.writeMessage(5, email_.get(i));
+      for (int i = 0; i < emails_.size(); i++) {
+        output.writeMessage(4, emails_.get(i));
       }
       unknownFields.writeTo(output);
     }
@@ -1225,19 +1127,19 @@ public final class CustomerProtos {
       if (size != -1) return size;
 
       size = 0;
-      if (((bitField0_ & 0x00000001) != 0)) {
+      if (id_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(1, id_);
       }
-      if (((bitField0_ & 0x00000002) != 0)) {
+      if (!getFirstNameBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, firstName_);
       }
-      if (((bitField0_ & 0x00000004) != 0)) {
+      if (!getLastNameBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, lastName_);
       }
-      for (int i = 0; i < email_.size(); i++) {
+      for (int i = 0; i < emails_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(5, email_.get(i));
+          .computeMessageSize(4, emails_.get(i));
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -1254,23 +1156,14 @@ public final class CustomerProtos {
       }
       trrp_3.CustomerProtos.Customer other = (trrp_3.CustomerProtos.Customer) obj;
 
-      if (hasId() != other.hasId()) return false;
-      if (hasId()) {
-        if (getId()
-            != other.getId()) return false;
-      }
-      if (hasFirstName() != other.hasFirstName()) return false;
-      if (hasFirstName()) {
-        if (!getFirstName()
-            .equals(other.getFirstName())) return false;
-      }
-      if (hasLastName() != other.hasLastName()) return false;
-      if (hasLastName()) {
-        if (!getLastName()
-            .equals(other.getLastName())) return false;
-      }
-      if (!getEmailList()
-          .equals(other.getEmailList())) return false;
+      if (getId()
+          != other.getId()) return false;
+      if (!getFirstName()
+          .equals(other.getFirstName())) return false;
+      if (!getLastName()
+          .equals(other.getLastName())) return false;
+      if (!getEmailsList()
+          .equals(other.getEmailsList())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -1282,21 +1175,15 @@ public final class CustomerProtos {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasId()) {
-        hash = (37 * hash) + ID_FIELD_NUMBER;
-        hash = (53 * hash) + getId();
-      }
-      if (hasFirstName()) {
-        hash = (37 * hash) + FIRSTNAME_FIELD_NUMBER;
-        hash = (53 * hash) + getFirstName().hashCode();
-      }
-      if (hasLastName()) {
-        hash = (37 * hash) + LASTNAME_FIELD_NUMBER;
-        hash = (53 * hash) + getLastName().hashCode();
-      }
-      if (getEmailCount() > 0) {
-        hash = (37 * hash) + EMAIL_FIELD_NUMBER;
-        hash = (53 * hash) + getEmailList().hashCode();
+      hash = (37 * hash) + ID_FIELD_NUMBER;
+      hash = (53 * hash) + getId();
+      hash = (37 * hash) + FIRSTNAME_FIELD_NUMBER;
+      hash = (53 * hash) + getFirstName().hashCode();
+      hash = (37 * hash) + LASTNAME_FIELD_NUMBER;
+      hash = (53 * hash) + getLastName().hashCode();
+      if (getEmailsCount() > 0) {
+        hash = (37 * hash) + EMAILS_FIELD_NUMBER;
+        hash = (53 * hash) + getEmailsList().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -1426,23 +1313,23 @@ public final class CustomerProtos {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
-          getEmailFieldBuilder();
+          getEmailsFieldBuilder();
         }
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
         id_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000001);
+
         firstName_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
+
         lastName_ = "";
-        bitField0_ = (bitField0_ & ~0x00000004);
-        if (emailBuilder_ == null) {
-          email_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000008);
+
+        if (emailsBuilder_ == null) {
+          emails_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
-          emailBuilder_.clear();
+          emailsBuilder_.clear();
         }
         return this;
       }
@@ -1471,29 +1358,18 @@ public final class CustomerProtos {
       public trrp_3.CustomerProtos.Customer buildPartial() {
         trrp_3.CustomerProtos.Customer result = new trrp_3.CustomerProtos.Customer(this);
         int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          result.id_ = id_;
-          to_bitField0_ |= 0x00000001;
-        }
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          to_bitField0_ |= 0x00000002;
-        }
+        result.id_ = id_;
         result.firstName_ = firstName_;
-        if (((from_bitField0_ & 0x00000004) != 0)) {
-          to_bitField0_ |= 0x00000004;
-        }
         result.lastName_ = lastName_;
-        if (emailBuilder_ == null) {
-          if (((bitField0_ & 0x00000008) != 0)) {
-            email_ = java.util.Collections.unmodifiableList(email_);
-            bitField0_ = (bitField0_ & ~0x00000008);
+        if (emailsBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) != 0)) {
+            emails_ = java.util.Collections.unmodifiableList(emails_);
+            bitField0_ = (bitField0_ & ~0x00000001);
           }
-          result.email_ = email_;
+          result.emails_ = emails_;
         } else {
-          result.email_ = emailBuilder_.build();
+          result.emails_ = emailsBuilder_.build();
         }
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
@@ -1542,42 +1418,40 @@ public final class CustomerProtos {
 
       public Builder mergeFrom(trrp_3.CustomerProtos.Customer other) {
         if (other == trrp_3.CustomerProtos.Customer.getDefaultInstance()) return this;
-        if (other.hasId()) {
+        if (other.getId() != 0) {
           setId(other.getId());
         }
-        if (other.hasFirstName()) {
-          bitField0_ |= 0x00000002;
+        if (!other.getFirstName().isEmpty()) {
           firstName_ = other.firstName_;
           onChanged();
         }
-        if (other.hasLastName()) {
-          bitField0_ |= 0x00000004;
+        if (!other.getLastName().isEmpty()) {
           lastName_ = other.lastName_;
           onChanged();
         }
-        if (emailBuilder_ == null) {
-          if (!other.email_.isEmpty()) {
-            if (email_.isEmpty()) {
-              email_ = other.email_;
-              bitField0_ = (bitField0_ & ~0x00000008);
+        if (emailsBuilder_ == null) {
+          if (!other.emails_.isEmpty()) {
+            if (emails_.isEmpty()) {
+              emails_ = other.emails_;
+              bitField0_ = (bitField0_ & ~0x00000001);
             } else {
-              ensureEmailIsMutable();
-              email_.addAll(other.email_);
+              ensureEmailsIsMutable();
+              emails_.addAll(other.emails_);
             }
             onChanged();
           }
         } else {
-          if (!other.email_.isEmpty()) {
-            if (emailBuilder_.isEmpty()) {
-              emailBuilder_.dispose();
-              emailBuilder_ = null;
-              email_ = other.email_;
-              bitField0_ = (bitField0_ & ~0x00000008);
-              emailBuilder_ = 
+          if (!other.emails_.isEmpty()) {
+            if (emailsBuilder_.isEmpty()) {
+              emailsBuilder_.dispose();
+              emailsBuilder_ = null;
+              emails_ = other.emails_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              emailsBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                   getEmailFieldBuilder() : null;
+                   getEmailsFieldBuilder() : null;
             } else {
-              emailBuilder_.addAllMessages(other.email_);
+              emailsBuilder_.addAllMessages(other.emails_);
             }
           }
         }
@@ -1588,20 +1462,6 @@ public final class CustomerProtos {
 
       @java.lang.Override
       public final boolean isInitialized() {
-        if (!hasId()) {
-          return false;
-        }
-        if (!hasFirstName()) {
-          return false;
-        }
-        if (!hasLastName()) {
-          return false;
-        }
-        for (int i = 0; i < getEmailCount(); i++) {
-          if (!getEmail(i).isInitialized()) {
-            return false;
-          }
-        }
         return true;
       }
 
@@ -1627,15 +1487,7 @@ public final class CustomerProtos {
 
       private int id_ ;
       /**
-       * <code>required int32 id = 1;</code>
-       * @return Whether the id field is set.
-       */
-      @java.lang.Override
-      public boolean hasId() {
-        return ((bitField0_ & 0x00000001) != 0);
-      }
-      /**
-       * <code>required int32 id = 1;</code>
+       * <code>int32 id = 1;</code>
        * @return The id.
        */
       @java.lang.Override
@@ -1643,22 +1495,22 @@ public final class CustomerProtos {
         return id_;
       }
       /**
-       * <code>required int32 id = 1;</code>
+       * <code>int32 id = 1;</code>
        * @param value The id to set.
        * @return This builder for chaining.
        */
       public Builder setId(int value) {
-        bitField0_ |= 0x00000001;
+        
         id_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required int32 id = 1;</code>
+       * <code>int32 id = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearId() {
-        bitField0_ = (bitField0_ & ~0x00000001);
+        
         id_ = 0;
         onChanged();
         return this;
@@ -1666,14 +1518,7 @@ public final class CustomerProtos {
 
       private java.lang.Object firstName_ = "";
       /**
-       * <code>required string firstName = 2;</code>
-       * @return Whether the firstName field is set.
-       */
-      public boolean hasFirstName() {
-        return ((bitField0_ & 0x00000002) != 0);
-      }
-      /**
-       * <code>required string firstName = 2;</code>
+       * <code>string firstName = 2;</code>
        * @return The firstName.
        */
       public java.lang.String getFirstName() {
@@ -1682,16 +1527,14 @@ public final class CustomerProtos {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            firstName_ = s;
-          }
+          firstName_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
         }
       }
       /**
-       * <code>required string firstName = 2;</code>
+       * <code>string firstName = 2;</code>
        * @return The bytes for firstName.
        */
       public com.google.protobuf.ByteString
@@ -1708,7 +1551,7 @@ public final class CustomerProtos {
         }
       }
       /**
-       * <code>required string firstName = 2;</code>
+       * <code>string firstName = 2;</code>
        * @param value The firstName to set.
        * @return This builder for chaining.
        */
@@ -1717,23 +1560,23 @@ public final class CustomerProtos {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000002;
+  
         firstName_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required string firstName = 2;</code>
+       * <code>string firstName = 2;</code>
        * @return This builder for chaining.
        */
       public Builder clearFirstName() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        
         firstName_ = getDefaultInstance().getFirstName();
         onChanged();
         return this;
       }
       /**
-       * <code>required string firstName = 2;</code>
+       * <code>string firstName = 2;</code>
        * @param value The bytes for firstName to set.
        * @return This builder for chaining.
        */
@@ -1742,7 +1585,8 @@ public final class CustomerProtos {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000002;
+  checkByteStringIsUtf8(value);
+        
         firstName_ = value;
         onChanged();
         return this;
@@ -1750,14 +1594,7 @@ public final class CustomerProtos {
 
       private java.lang.Object lastName_ = "";
       /**
-       * <code>required string lastName = 3;</code>
-       * @return Whether the lastName field is set.
-       */
-      public boolean hasLastName() {
-        return ((bitField0_ & 0x00000004) != 0);
-      }
-      /**
-       * <code>required string lastName = 3;</code>
+       * <code>string lastName = 3;</code>
        * @return The lastName.
        */
       public java.lang.String getLastName() {
@@ -1766,16 +1603,14 @@ public final class CustomerProtos {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            lastName_ = s;
-          }
+          lastName_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
         }
       }
       /**
-       * <code>required string lastName = 3;</code>
+       * <code>string lastName = 3;</code>
        * @return The bytes for lastName.
        */
       public com.google.protobuf.ByteString
@@ -1792,7 +1627,7 @@ public final class CustomerProtos {
         }
       }
       /**
-       * <code>required string lastName = 3;</code>
+       * <code>string lastName = 3;</code>
        * @param value The lastName to set.
        * @return This builder for chaining.
        */
@@ -1801,23 +1636,23 @@ public final class CustomerProtos {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000004;
+  
         lastName_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required string lastName = 3;</code>
+       * <code>string lastName = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearLastName() {
-        bitField0_ = (bitField0_ & ~0x00000004);
+        
         lastName_ = getDefaultInstance().getLastName();
         onChanged();
         return this;
       }
       /**
-       * <code>required string lastName = 3;</code>
+       * <code>string lastName = 3;</code>
        * @param value The bytes for lastName to set.
        * @return This builder for chaining.
        */
@@ -1826,250 +1661,251 @@ public final class CustomerProtos {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000004;
+  checkByteStringIsUtf8(value);
+        
         lastName_ = value;
         onChanged();
         return this;
       }
 
-      private java.util.List<trrp_3.CustomerProtos.Customer.EmailAddress> email_ =
+      private java.util.List<trrp_3.CustomerProtos.Customer.EmailAddress> emails_ =
         java.util.Collections.emptyList();
-      private void ensureEmailIsMutable() {
-        if (!((bitField0_ & 0x00000008) != 0)) {
-          email_ = new java.util.ArrayList<trrp_3.CustomerProtos.Customer.EmailAddress>(email_);
-          bitField0_ |= 0x00000008;
+      private void ensureEmailsIsMutable() {
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          emails_ = new java.util.ArrayList<trrp_3.CustomerProtos.Customer.EmailAddress>(emails_);
+          bitField0_ |= 0x00000001;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          trrp_3.CustomerProtos.Customer.EmailAddress, trrp_3.CustomerProtos.Customer.EmailAddress.Builder, trrp_3.CustomerProtos.Customer.EmailAddressOrBuilder> emailBuilder_;
+          trrp_3.CustomerProtos.Customer.EmailAddress, trrp_3.CustomerProtos.Customer.EmailAddress.Builder, trrp_3.CustomerProtos.Customer.EmailAddressOrBuilder> emailsBuilder_;
 
       /**
-       * <code>repeated .trrp_3.Customer.EmailAddress email = 5;</code>
+       * <code>repeated .trrp_3.Customer.EmailAddress emails = 4;</code>
        */
-      public java.util.List<trrp_3.CustomerProtos.Customer.EmailAddress> getEmailList() {
-        if (emailBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(email_);
+      public java.util.List<trrp_3.CustomerProtos.Customer.EmailAddress> getEmailsList() {
+        if (emailsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(emails_);
         } else {
-          return emailBuilder_.getMessageList();
+          return emailsBuilder_.getMessageList();
         }
       }
       /**
-       * <code>repeated .trrp_3.Customer.EmailAddress email = 5;</code>
+       * <code>repeated .trrp_3.Customer.EmailAddress emails = 4;</code>
        */
-      public int getEmailCount() {
-        if (emailBuilder_ == null) {
-          return email_.size();
+      public int getEmailsCount() {
+        if (emailsBuilder_ == null) {
+          return emails_.size();
         } else {
-          return emailBuilder_.getCount();
+          return emailsBuilder_.getCount();
         }
       }
       /**
-       * <code>repeated .trrp_3.Customer.EmailAddress email = 5;</code>
+       * <code>repeated .trrp_3.Customer.EmailAddress emails = 4;</code>
        */
-      public trrp_3.CustomerProtos.Customer.EmailAddress getEmail(int index) {
-        if (emailBuilder_ == null) {
-          return email_.get(index);
+      public trrp_3.CustomerProtos.Customer.EmailAddress getEmails(int index) {
+        if (emailsBuilder_ == null) {
+          return emails_.get(index);
         } else {
-          return emailBuilder_.getMessage(index);
+          return emailsBuilder_.getMessage(index);
         }
       }
       /**
-       * <code>repeated .trrp_3.Customer.EmailAddress email = 5;</code>
+       * <code>repeated .trrp_3.Customer.EmailAddress emails = 4;</code>
        */
-      public Builder setEmail(
+      public Builder setEmails(
           int index, trrp_3.CustomerProtos.Customer.EmailAddress value) {
-        if (emailBuilder_ == null) {
+        if (emailsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureEmailIsMutable();
-          email_.set(index, value);
+          ensureEmailsIsMutable();
+          emails_.set(index, value);
           onChanged();
         } else {
-          emailBuilder_.setMessage(index, value);
+          emailsBuilder_.setMessage(index, value);
         }
         return this;
       }
       /**
-       * <code>repeated .trrp_3.Customer.EmailAddress email = 5;</code>
+       * <code>repeated .trrp_3.Customer.EmailAddress emails = 4;</code>
        */
-      public Builder setEmail(
+      public Builder setEmails(
           int index, trrp_3.CustomerProtos.Customer.EmailAddress.Builder builderForValue) {
-        if (emailBuilder_ == null) {
-          ensureEmailIsMutable();
-          email_.set(index, builderForValue.build());
+        if (emailsBuilder_ == null) {
+          ensureEmailsIsMutable();
+          emails_.set(index, builderForValue.build());
           onChanged();
         } else {
-          emailBuilder_.setMessage(index, builderForValue.build());
+          emailsBuilder_.setMessage(index, builderForValue.build());
         }
         return this;
       }
       /**
-       * <code>repeated .trrp_3.Customer.EmailAddress email = 5;</code>
+       * <code>repeated .trrp_3.Customer.EmailAddress emails = 4;</code>
        */
-      public Builder addEmail(trrp_3.CustomerProtos.Customer.EmailAddress value) {
-        if (emailBuilder_ == null) {
+      public Builder addEmails(trrp_3.CustomerProtos.Customer.EmailAddress value) {
+        if (emailsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureEmailIsMutable();
-          email_.add(value);
+          ensureEmailsIsMutable();
+          emails_.add(value);
           onChanged();
         } else {
-          emailBuilder_.addMessage(value);
+          emailsBuilder_.addMessage(value);
         }
         return this;
       }
       /**
-       * <code>repeated .trrp_3.Customer.EmailAddress email = 5;</code>
+       * <code>repeated .trrp_3.Customer.EmailAddress emails = 4;</code>
        */
-      public Builder addEmail(
+      public Builder addEmails(
           int index, trrp_3.CustomerProtos.Customer.EmailAddress value) {
-        if (emailBuilder_ == null) {
+        if (emailsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureEmailIsMutable();
-          email_.add(index, value);
+          ensureEmailsIsMutable();
+          emails_.add(index, value);
           onChanged();
         } else {
-          emailBuilder_.addMessage(index, value);
+          emailsBuilder_.addMessage(index, value);
         }
         return this;
       }
       /**
-       * <code>repeated .trrp_3.Customer.EmailAddress email = 5;</code>
+       * <code>repeated .trrp_3.Customer.EmailAddress emails = 4;</code>
        */
-      public Builder addEmail(
+      public Builder addEmails(
           trrp_3.CustomerProtos.Customer.EmailAddress.Builder builderForValue) {
-        if (emailBuilder_ == null) {
-          ensureEmailIsMutable();
-          email_.add(builderForValue.build());
+        if (emailsBuilder_ == null) {
+          ensureEmailsIsMutable();
+          emails_.add(builderForValue.build());
           onChanged();
         } else {
-          emailBuilder_.addMessage(builderForValue.build());
+          emailsBuilder_.addMessage(builderForValue.build());
         }
         return this;
       }
       /**
-       * <code>repeated .trrp_3.Customer.EmailAddress email = 5;</code>
+       * <code>repeated .trrp_3.Customer.EmailAddress emails = 4;</code>
        */
-      public Builder addEmail(
+      public Builder addEmails(
           int index, trrp_3.CustomerProtos.Customer.EmailAddress.Builder builderForValue) {
-        if (emailBuilder_ == null) {
-          ensureEmailIsMutable();
-          email_.add(index, builderForValue.build());
+        if (emailsBuilder_ == null) {
+          ensureEmailsIsMutable();
+          emails_.add(index, builderForValue.build());
           onChanged();
         } else {
-          emailBuilder_.addMessage(index, builderForValue.build());
+          emailsBuilder_.addMessage(index, builderForValue.build());
         }
         return this;
       }
       /**
-       * <code>repeated .trrp_3.Customer.EmailAddress email = 5;</code>
+       * <code>repeated .trrp_3.Customer.EmailAddress emails = 4;</code>
        */
-      public Builder addAllEmail(
+      public Builder addAllEmails(
           java.lang.Iterable<? extends trrp_3.CustomerProtos.Customer.EmailAddress> values) {
-        if (emailBuilder_ == null) {
-          ensureEmailIsMutable();
+        if (emailsBuilder_ == null) {
+          ensureEmailsIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, email_);
+              values, emails_);
           onChanged();
         } else {
-          emailBuilder_.addAllMessages(values);
+          emailsBuilder_.addAllMessages(values);
         }
         return this;
       }
       /**
-       * <code>repeated .trrp_3.Customer.EmailAddress email = 5;</code>
+       * <code>repeated .trrp_3.Customer.EmailAddress emails = 4;</code>
        */
-      public Builder clearEmail() {
-        if (emailBuilder_ == null) {
-          email_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000008);
+      public Builder clearEmails() {
+        if (emailsBuilder_ == null) {
+          emails_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
           onChanged();
         } else {
-          emailBuilder_.clear();
+          emailsBuilder_.clear();
         }
         return this;
       }
       /**
-       * <code>repeated .trrp_3.Customer.EmailAddress email = 5;</code>
+       * <code>repeated .trrp_3.Customer.EmailAddress emails = 4;</code>
        */
-      public Builder removeEmail(int index) {
-        if (emailBuilder_ == null) {
-          ensureEmailIsMutable();
-          email_.remove(index);
+      public Builder removeEmails(int index) {
+        if (emailsBuilder_ == null) {
+          ensureEmailsIsMutable();
+          emails_.remove(index);
           onChanged();
         } else {
-          emailBuilder_.remove(index);
+          emailsBuilder_.remove(index);
         }
         return this;
       }
       /**
-       * <code>repeated .trrp_3.Customer.EmailAddress email = 5;</code>
+       * <code>repeated .trrp_3.Customer.EmailAddress emails = 4;</code>
        */
-      public trrp_3.CustomerProtos.Customer.EmailAddress.Builder getEmailBuilder(
+      public trrp_3.CustomerProtos.Customer.EmailAddress.Builder getEmailsBuilder(
           int index) {
-        return getEmailFieldBuilder().getBuilder(index);
+        return getEmailsFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .trrp_3.Customer.EmailAddress email = 5;</code>
+       * <code>repeated .trrp_3.Customer.EmailAddress emails = 4;</code>
        */
-      public trrp_3.CustomerProtos.Customer.EmailAddressOrBuilder getEmailOrBuilder(
+      public trrp_3.CustomerProtos.Customer.EmailAddressOrBuilder getEmailsOrBuilder(
           int index) {
-        if (emailBuilder_ == null) {
-          return email_.get(index);  } else {
-          return emailBuilder_.getMessageOrBuilder(index);
+        if (emailsBuilder_ == null) {
+          return emails_.get(index);  } else {
+          return emailsBuilder_.getMessageOrBuilder(index);
         }
       }
       /**
-       * <code>repeated .trrp_3.Customer.EmailAddress email = 5;</code>
+       * <code>repeated .trrp_3.Customer.EmailAddress emails = 4;</code>
        */
       public java.util.List<? extends trrp_3.CustomerProtos.Customer.EmailAddressOrBuilder> 
-           getEmailOrBuilderList() {
-        if (emailBuilder_ != null) {
-          return emailBuilder_.getMessageOrBuilderList();
+           getEmailsOrBuilderList() {
+        if (emailsBuilder_ != null) {
+          return emailsBuilder_.getMessageOrBuilderList();
         } else {
-          return java.util.Collections.unmodifiableList(email_);
+          return java.util.Collections.unmodifiableList(emails_);
         }
       }
       /**
-       * <code>repeated .trrp_3.Customer.EmailAddress email = 5;</code>
+       * <code>repeated .trrp_3.Customer.EmailAddress emails = 4;</code>
        */
-      public trrp_3.CustomerProtos.Customer.EmailAddress.Builder addEmailBuilder() {
-        return getEmailFieldBuilder().addBuilder(
+      public trrp_3.CustomerProtos.Customer.EmailAddress.Builder addEmailsBuilder() {
+        return getEmailsFieldBuilder().addBuilder(
             trrp_3.CustomerProtos.Customer.EmailAddress.getDefaultInstance());
       }
       /**
-       * <code>repeated .trrp_3.Customer.EmailAddress email = 5;</code>
+       * <code>repeated .trrp_3.Customer.EmailAddress emails = 4;</code>
        */
-      public trrp_3.CustomerProtos.Customer.EmailAddress.Builder addEmailBuilder(
+      public trrp_3.CustomerProtos.Customer.EmailAddress.Builder addEmailsBuilder(
           int index) {
-        return getEmailFieldBuilder().addBuilder(
+        return getEmailsFieldBuilder().addBuilder(
             index, trrp_3.CustomerProtos.Customer.EmailAddress.getDefaultInstance());
       }
       /**
-       * <code>repeated .trrp_3.Customer.EmailAddress email = 5;</code>
+       * <code>repeated .trrp_3.Customer.EmailAddress emails = 4;</code>
        */
       public java.util.List<trrp_3.CustomerProtos.Customer.EmailAddress.Builder> 
-           getEmailBuilderList() {
-        return getEmailFieldBuilder().getBuilderList();
+           getEmailsBuilderList() {
+        return getEmailsFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
           trrp_3.CustomerProtos.Customer.EmailAddress, trrp_3.CustomerProtos.Customer.EmailAddress.Builder, trrp_3.CustomerProtos.Customer.EmailAddressOrBuilder> 
-          getEmailFieldBuilder() {
-        if (emailBuilder_ == null) {
-          emailBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+          getEmailsFieldBuilder() {
+        if (emailsBuilder_ == null) {
+          emailsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               trrp_3.CustomerProtos.Customer.EmailAddress, trrp_3.CustomerProtos.Customer.EmailAddress.Builder, trrp_3.CustomerProtos.Customer.EmailAddressOrBuilder>(
-                  email_,
-                  ((bitField0_ & 0x00000008) != 0),
+                  emails_,
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
-          email_ = null;
+          emails_ = null;
         }
-        return emailBuilder_;
+        return emailsBuilder_;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -2097,7 +1933,7 @@ public final class CustomerProtos {
       return DEFAULT_INSTANCE;
     }
 
-    @java.lang.Deprecated public static final com.google.protobuf.Parser<Customer>
+    private static final com.google.protobuf.Parser<Customer>
         PARSER = new com.google.protobuf.AbstractParser<Customer>() {
       @java.lang.Override
       public Customer parsePartialFrom(
@@ -2124,73 +1960,55 @@ public final class CustomerProtos {
 
   }
 
-  public interface OrganizationOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:trrp_3.Organization)
+  public interface ListCustomersOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:trrp_3.ListCustomers)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>required string name = 1;</code>
-     * @return Whether the name field is set.
-     */
-    boolean hasName();
-    /**
-     * <code>required string name = 1;</code>
-     * @return The name.
-     */
-    java.lang.String getName();
-    /**
-     * <code>required string name = 1;</code>
-     * @return The bytes for name.
-     */
-    com.google.protobuf.ByteString
-        getNameBytes();
-
-    /**
-     * <code>repeated .trrp_3.Customer customer = 2;</code>
+     * <code>repeated .trrp_3.Customer items = 1;</code>
      */
     java.util.List<trrp_3.CustomerProtos.Customer> 
-        getCustomerList();
+        getItemsList();
     /**
-     * <code>repeated .trrp_3.Customer customer = 2;</code>
+     * <code>repeated .trrp_3.Customer items = 1;</code>
      */
-    trrp_3.CustomerProtos.Customer getCustomer(int index);
+    trrp_3.CustomerProtos.Customer getItems(int index);
     /**
-     * <code>repeated .trrp_3.Customer customer = 2;</code>
+     * <code>repeated .trrp_3.Customer items = 1;</code>
      */
-    int getCustomerCount();
+    int getItemsCount();
     /**
-     * <code>repeated .trrp_3.Customer customer = 2;</code>
+     * <code>repeated .trrp_3.Customer items = 1;</code>
      */
     java.util.List<? extends trrp_3.CustomerProtos.CustomerOrBuilder> 
-        getCustomerOrBuilderList();
+        getItemsOrBuilderList();
     /**
-     * <code>repeated .trrp_3.Customer customer = 2;</code>
+     * <code>repeated .trrp_3.Customer items = 1;</code>
      */
-    trrp_3.CustomerProtos.CustomerOrBuilder getCustomerOrBuilder(
+    trrp_3.CustomerProtos.CustomerOrBuilder getItemsOrBuilder(
         int index);
   }
   /**
-   * Protobuf type {@code trrp_3.Organization}
+   * Protobuf type {@code trrp_3.ListCustomers}
    */
-  public static final class Organization extends
+  public static final class ListCustomers extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:trrp_3.Organization)
-      OrganizationOrBuilder {
+      // @@protoc_insertion_point(message_implements:trrp_3.ListCustomers)
+      ListCustomersOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use Organization.newBuilder() to construct.
-    private Organization(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use ListCustomers.newBuilder() to construct.
+    private ListCustomers(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private Organization() {
-      name_ = "";
-      customer_ = java.util.Collections.emptyList();
+    private ListCustomers() {
+      items_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new Organization();
+      return new ListCustomers();
     }
 
     @java.lang.Override
@@ -2198,7 +2016,7 @@ public final class CustomerProtos {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private Organization(
+    private ListCustomers(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -2218,18 +2036,12 @@ public final class CustomerProtos {
               done = true;
               break;
             case 10: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000001;
-              name_ = bs;
-              break;
-            }
-            case 18: {
-              if (!((mutable_bitField0_ & 0x00000002) != 0)) {
-                customer_ = new java.util.ArrayList<trrp_3.CustomerProtos.Customer>();
-                mutable_bitField0_ |= 0x00000002;
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
+                items_ = new java.util.ArrayList<trrp_3.CustomerProtos.Customer>();
+                mutable_bitField0_ |= 0x00000001;
               }
-              customer_.add(
-                  input.readMessage(trrp_3.CustomerProtos.Customer.PARSER, extensionRegistry));
+              items_.add(
+                  input.readMessage(trrp_3.CustomerProtos.Customer.parser(), extensionRegistry));
               break;
             }
             default: {
@@ -2247,8 +2059,8 @@ public final class CustomerProtos {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000002) != 0)) {
-          customer_ = java.util.Collections.unmodifiableList(customer_);
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
+          items_ = java.util.Collections.unmodifiableList(items_);
         }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
@@ -2256,104 +2068,55 @@ public final class CustomerProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return trrp_3.CustomerProtos.internal_static_trrp_3_Organization_descriptor;
+      return trrp_3.CustomerProtos.internal_static_trrp_3_ListCustomers_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return trrp_3.CustomerProtos.internal_static_trrp_3_Organization_fieldAccessorTable
+      return trrp_3.CustomerProtos.internal_static_trrp_3_ListCustomers_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              trrp_3.CustomerProtos.Organization.class, trrp_3.CustomerProtos.Organization.Builder.class);
+              trrp_3.CustomerProtos.ListCustomers.class, trrp_3.CustomerProtos.ListCustomers.Builder.class);
     }
 
-    private int bitField0_;
-    public static final int NAME_FIELD_NUMBER = 1;
-    private volatile java.lang.Object name_;
+    public static final int ITEMS_FIELD_NUMBER = 1;
+    private java.util.List<trrp_3.CustomerProtos.Customer> items_;
     /**
-     * <code>required string name = 1;</code>
-     * @return Whether the name field is set.
+     * <code>repeated .trrp_3.Customer items = 1;</code>
      */
     @java.lang.Override
-    public boolean hasName() {
-      return ((bitField0_ & 0x00000001) != 0);
+    public java.util.List<trrp_3.CustomerProtos.Customer> getItemsList() {
+      return items_;
     }
     /**
-     * <code>required string name = 1;</code>
-     * @return The name.
-     */
-    @java.lang.Override
-    public java.lang.String getName() {
-      java.lang.Object ref = name_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          name_ = s;
-        }
-        return s;
-      }
-    }
-    /**
-     * <code>required string name = 1;</code>
-     * @return The bytes for name.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString
-        getNameBytes() {
-      java.lang.Object ref = name_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        name_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int CUSTOMER_FIELD_NUMBER = 2;
-    private java.util.List<trrp_3.CustomerProtos.Customer> customer_;
-    /**
-     * <code>repeated .trrp_3.Customer customer = 2;</code>
-     */
-    @java.lang.Override
-    public java.util.List<trrp_3.CustomerProtos.Customer> getCustomerList() {
-      return customer_;
-    }
-    /**
-     * <code>repeated .trrp_3.Customer customer = 2;</code>
+     * <code>repeated .trrp_3.Customer items = 1;</code>
      */
     @java.lang.Override
     public java.util.List<? extends trrp_3.CustomerProtos.CustomerOrBuilder> 
-        getCustomerOrBuilderList() {
-      return customer_;
+        getItemsOrBuilderList() {
+      return items_;
     }
     /**
-     * <code>repeated .trrp_3.Customer customer = 2;</code>
+     * <code>repeated .trrp_3.Customer items = 1;</code>
      */
     @java.lang.Override
-    public int getCustomerCount() {
-      return customer_.size();
+    public int getItemsCount() {
+      return items_.size();
     }
     /**
-     * <code>repeated .trrp_3.Customer customer = 2;</code>
+     * <code>repeated .trrp_3.Customer items = 1;</code>
      */
     @java.lang.Override
-    public trrp_3.CustomerProtos.Customer getCustomer(int index) {
-      return customer_.get(index);
+    public trrp_3.CustomerProtos.Customer getItems(int index) {
+      return items_.get(index);
     }
     /**
-     * <code>repeated .trrp_3.Customer customer = 2;</code>
+     * <code>repeated .trrp_3.Customer items = 1;</code>
      */
     @java.lang.Override
-    public trrp_3.CustomerProtos.CustomerOrBuilder getCustomerOrBuilder(
+    public trrp_3.CustomerProtos.CustomerOrBuilder getItemsOrBuilder(
         int index) {
-      return customer_.get(index);
+      return items_.get(index);
     }
 
     private byte memoizedIsInitialized = -1;
@@ -2363,16 +2126,6 @@ public final class CustomerProtos {
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
 
-      if (!hasName()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      for (int i = 0; i < getCustomerCount(); i++) {
-        if (!getCustomer(i).isInitialized()) {
-          memoizedIsInitialized = 0;
-          return false;
-        }
-      }
       memoizedIsInitialized = 1;
       return true;
     }
@@ -2380,11 +2133,8 @@ public final class CustomerProtos {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (((bitField0_ & 0x00000001) != 0)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, name_);
-      }
-      for (int i = 0; i < customer_.size(); i++) {
-        output.writeMessage(2, customer_.get(i));
+      for (int i = 0; i < items_.size(); i++) {
+        output.writeMessage(1, items_.get(i));
       }
       unknownFields.writeTo(output);
     }
@@ -2395,12 +2145,9 @@ public final class CustomerProtos {
       if (size != -1) return size;
 
       size = 0;
-      if (((bitField0_ & 0x00000001) != 0)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, name_);
-      }
-      for (int i = 0; i < customer_.size(); i++) {
+      for (int i = 0; i < items_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, customer_.get(i));
+          .computeMessageSize(1, items_.get(i));
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -2412,18 +2159,13 @@ public final class CustomerProtos {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof trrp_3.CustomerProtos.Organization)) {
+      if (!(obj instanceof trrp_3.CustomerProtos.ListCustomers)) {
         return super.equals(obj);
       }
-      trrp_3.CustomerProtos.Organization other = (trrp_3.CustomerProtos.Organization) obj;
+      trrp_3.CustomerProtos.ListCustomers other = (trrp_3.CustomerProtos.ListCustomers) obj;
 
-      if (hasName() != other.hasName()) return false;
-      if (hasName()) {
-        if (!getName()
-            .equals(other.getName())) return false;
-      }
-      if (!getCustomerList()
-          .equals(other.getCustomerList())) return false;
+      if (!getItemsList()
+          .equals(other.getItemsList())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -2435,82 +2177,78 @@ public final class CustomerProtos {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasName()) {
-        hash = (37 * hash) + NAME_FIELD_NUMBER;
-        hash = (53 * hash) + getName().hashCode();
-      }
-      if (getCustomerCount() > 0) {
-        hash = (37 * hash) + CUSTOMER_FIELD_NUMBER;
-        hash = (53 * hash) + getCustomerList().hashCode();
+      if (getItemsCount() > 0) {
+        hash = (37 * hash) + ITEMS_FIELD_NUMBER;
+        hash = (53 * hash) + getItemsList().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static trrp_3.CustomerProtos.Organization parseFrom(
+    public static trrp_3.CustomerProtos.ListCustomers parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static trrp_3.CustomerProtos.Organization parseFrom(
+    public static trrp_3.CustomerProtos.ListCustomers parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static trrp_3.CustomerProtos.Organization parseFrom(
+    public static trrp_3.CustomerProtos.ListCustomers parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static trrp_3.CustomerProtos.Organization parseFrom(
+    public static trrp_3.CustomerProtos.ListCustomers parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static trrp_3.CustomerProtos.Organization parseFrom(byte[] data)
+    public static trrp_3.CustomerProtos.ListCustomers parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static trrp_3.CustomerProtos.Organization parseFrom(
+    public static trrp_3.CustomerProtos.ListCustomers parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static trrp_3.CustomerProtos.Organization parseFrom(java.io.InputStream input)
+    public static trrp_3.CustomerProtos.ListCustomers parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static trrp_3.CustomerProtos.Organization parseFrom(
+    public static trrp_3.CustomerProtos.ListCustomers parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static trrp_3.CustomerProtos.Organization parseDelimitedFrom(java.io.InputStream input)
+    public static trrp_3.CustomerProtos.ListCustomers parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static trrp_3.CustomerProtos.Organization parseDelimitedFrom(
+    public static trrp_3.CustomerProtos.ListCustomers parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static trrp_3.CustomerProtos.Organization parseFrom(
+    public static trrp_3.CustomerProtos.ListCustomers parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static trrp_3.CustomerProtos.Organization parseFrom(
+    public static trrp_3.CustomerProtos.ListCustomers parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2523,7 +2261,7 @@ public final class CustomerProtos {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(trrp_3.CustomerProtos.Organization prototype) {
+    public static Builder newBuilder(trrp_3.CustomerProtos.ListCustomers prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -2539,26 +2277,26 @@ public final class CustomerProtos {
       return builder;
     }
     /**
-     * Protobuf type {@code trrp_3.Organization}
+     * Protobuf type {@code trrp_3.ListCustomers}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:trrp_3.Organization)
-        trrp_3.CustomerProtos.OrganizationOrBuilder {
+        // @@protoc_insertion_point(builder_implements:trrp_3.ListCustomers)
+        trrp_3.CustomerProtos.ListCustomersOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return trrp_3.CustomerProtos.internal_static_trrp_3_Organization_descriptor;
+        return trrp_3.CustomerProtos.internal_static_trrp_3_ListCustomers_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return trrp_3.CustomerProtos.internal_static_trrp_3_Organization_fieldAccessorTable
+        return trrp_3.CustomerProtos.internal_static_trrp_3_ListCustomers_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                trrp_3.CustomerProtos.Organization.class, trrp_3.CustomerProtos.Organization.Builder.class);
+                trrp_3.CustomerProtos.ListCustomers.class, trrp_3.CustomerProtos.ListCustomers.Builder.class);
       }
 
-      // Construct using trrp_3.CustomerProtos.Organization.newBuilder()
+      // Construct using trrp_3.CustomerProtos.ListCustomers.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -2571,19 +2309,17 @@ public final class CustomerProtos {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
-          getCustomerFieldBuilder();
+          getItemsFieldBuilder();
         }
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        name_ = "";
-        bitField0_ = (bitField0_ & ~0x00000001);
-        if (customerBuilder_ == null) {
-          customer_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+        if (itemsBuilder_ == null) {
+          items_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
         } else {
-          customerBuilder_.clear();
+          itemsBuilder_.clear();
         }
         return this;
       }
@@ -2591,17 +2327,17 @@ public final class CustomerProtos {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return trrp_3.CustomerProtos.internal_static_trrp_3_Organization_descriptor;
+        return trrp_3.CustomerProtos.internal_static_trrp_3_ListCustomers_descriptor;
       }
 
       @java.lang.Override
-      public trrp_3.CustomerProtos.Organization getDefaultInstanceForType() {
-        return trrp_3.CustomerProtos.Organization.getDefaultInstance();
+      public trrp_3.CustomerProtos.ListCustomers getDefaultInstanceForType() {
+        return trrp_3.CustomerProtos.ListCustomers.getDefaultInstance();
       }
 
       @java.lang.Override
-      public trrp_3.CustomerProtos.Organization build() {
-        trrp_3.CustomerProtos.Organization result = buildPartial();
+      public trrp_3.CustomerProtos.ListCustomers build() {
+        trrp_3.CustomerProtos.ListCustomers result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -2609,24 +2345,18 @@ public final class CustomerProtos {
       }
 
       @java.lang.Override
-      public trrp_3.CustomerProtos.Organization buildPartial() {
-        trrp_3.CustomerProtos.Organization result = new trrp_3.CustomerProtos.Organization(this);
+      public trrp_3.CustomerProtos.ListCustomers buildPartial() {
+        trrp_3.CustomerProtos.ListCustomers result = new trrp_3.CustomerProtos.ListCustomers(this);
         int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.name_ = name_;
-        if (customerBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) != 0)) {
-            customer_ = java.util.Collections.unmodifiableList(customer_);
-            bitField0_ = (bitField0_ & ~0x00000002);
+        if (itemsBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) != 0)) {
+            items_ = java.util.Collections.unmodifiableList(items_);
+            bitField0_ = (bitField0_ & ~0x00000001);
           }
-          result.customer_ = customer_;
+          result.items_ = items_;
         } else {
-          result.customer_ = customerBuilder_.build();
+          result.items_ = itemsBuilder_.build();
         }
-        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
@@ -2665,44 +2395,39 @@ public final class CustomerProtos {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof trrp_3.CustomerProtos.Organization) {
-          return mergeFrom((trrp_3.CustomerProtos.Organization)other);
+        if (other instanceof trrp_3.CustomerProtos.ListCustomers) {
+          return mergeFrom((trrp_3.CustomerProtos.ListCustomers)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(trrp_3.CustomerProtos.Organization other) {
-        if (other == trrp_3.CustomerProtos.Organization.getDefaultInstance()) return this;
-        if (other.hasName()) {
-          bitField0_ |= 0x00000001;
-          name_ = other.name_;
-          onChanged();
-        }
-        if (customerBuilder_ == null) {
-          if (!other.customer_.isEmpty()) {
-            if (customer_.isEmpty()) {
-              customer_ = other.customer_;
-              bitField0_ = (bitField0_ & ~0x00000002);
+      public Builder mergeFrom(trrp_3.CustomerProtos.ListCustomers other) {
+        if (other == trrp_3.CustomerProtos.ListCustomers.getDefaultInstance()) return this;
+        if (itemsBuilder_ == null) {
+          if (!other.items_.isEmpty()) {
+            if (items_.isEmpty()) {
+              items_ = other.items_;
+              bitField0_ = (bitField0_ & ~0x00000001);
             } else {
-              ensureCustomerIsMutable();
-              customer_.addAll(other.customer_);
+              ensureItemsIsMutable();
+              items_.addAll(other.items_);
             }
             onChanged();
           }
         } else {
-          if (!other.customer_.isEmpty()) {
-            if (customerBuilder_.isEmpty()) {
-              customerBuilder_.dispose();
-              customerBuilder_ = null;
-              customer_ = other.customer_;
-              bitField0_ = (bitField0_ & ~0x00000002);
-              customerBuilder_ = 
+          if (!other.items_.isEmpty()) {
+            if (itemsBuilder_.isEmpty()) {
+              itemsBuilder_.dispose();
+              itemsBuilder_ = null;
+              items_ = other.items_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              itemsBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                   getCustomerFieldBuilder() : null;
+                   getItemsFieldBuilder() : null;
             } else {
-              customerBuilder_.addAllMessages(other.customer_);
+              itemsBuilder_.addAllMessages(other.items_);
             }
           }
         }
@@ -2713,14 +2438,6 @@ public final class CustomerProtos {
 
       @java.lang.Override
       public final boolean isInitialized() {
-        if (!hasName()) {
-          return false;
-        }
-        for (int i = 0; i < getCustomerCount(); i++) {
-          if (!getCustomer(i).isInitialized()) {
-            return false;
-          }
-        }
         return true;
       }
 
@@ -2729,11 +2446,11 @@ public final class CustomerProtos {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        trrp_3.CustomerProtos.Organization parsedMessage = null;
+        trrp_3.CustomerProtos.ListCustomers parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (trrp_3.CustomerProtos.Organization) e.getUnfinishedMessage();
+          parsedMessage = (trrp_3.CustomerProtos.ListCustomers) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -2744,328 +2461,244 @@ public final class CustomerProtos {
       }
       private int bitField0_;
 
-      private java.lang.Object name_ = "";
-      /**
-       * <code>required string name = 1;</code>
-       * @return Whether the name field is set.
-       */
-      public boolean hasName() {
-        return ((bitField0_ & 0x00000001) != 0);
-      }
-      /**
-       * <code>required string name = 1;</code>
-       * @return The name.
-       */
-      public java.lang.String getName() {
-        java.lang.Object ref = name_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            name_ = s;
-          }
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>required string name = 1;</code>
-       * @return The bytes for name.
-       */
-      public com.google.protobuf.ByteString
-          getNameBytes() {
-        java.lang.Object ref = name_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          name_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>required string name = 1;</code>
-       * @param value The name to set.
-       * @return This builder for chaining.
-       */
-      public Builder setName(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
-        name_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required string name = 1;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearName() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        name_ = getDefaultInstance().getName();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required string name = 1;</code>
-       * @param value The bytes for name to set.
-       * @return This builder for chaining.
-       */
-      public Builder setNameBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
-        name_ = value;
-        onChanged();
-        return this;
-      }
-
-      private java.util.List<trrp_3.CustomerProtos.Customer> customer_ =
+      private java.util.List<trrp_3.CustomerProtos.Customer> items_ =
         java.util.Collections.emptyList();
-      private void ensureCustomerIsMutable() {
-        if (!((bitField0_ & 0x00000002) != 0)) {
-          customer_ = new java.util.ArrayList<trrp_3.CustomerProtos.Customer>(customer_);
-          bitField0_ |= 0x00000002;
+      private void ensureItemsIsMutable() {
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          items_ = new java.util.ArrayList<trrp_3.CustomerProtos.Customer>(items_);
+          bitField0_ |= 0x00000001;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          trrp_3.CustomerProtos.Customer, trrp_3.CustomerProtos.Customer.Builder, trrp_3.CustomerProtos.CustomerOrBuilder> customerBuilder_;
+          trrp_3.CustomerProtos.Customer, trrp_3.CustomerProtos.Customer.Builder, trrp_3.CustomerProtos.CustomerOrBuilder> itemsBuilder_;
 
       /**
-       * <code>repeated .trrp_3.Customer customer = 2;</code>
+       * <code>repeated .trrp_3.Customer items = 1;</code>
        */
-      public java.util.List<trrp_3.CustomerProtos.Customer> getCustomerList() {
-        if (customerBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(customer_);
+      public java.util.List<trrp_3.CustomerProtos.Customer> getItemsList() {
+        if (itemsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(items_);
         } else {
-          return customerBuilder_.getMessageList();
+          return itemsBuilder_.getMessageList();
         }
       }
       /**
-       * <code>repeated .trrp_3.Customer customer = 2;</code>
+       * <code>repeated .trrp_3.Customer items = 1;</code>
        */
-      public int getCustomerCount() {
-        if (customerBuilder_ == null) {
-          return customer_.size();
+      public int getItemsCount() {
+        if (itemsBuilder_ == null) {
+          return items_.size();
         } else {
-          return customerBuilder_.getCount();
+          return itemsBuilder_.getCount();
         }
       }
       /**
-       * <code>repeated .trrp_3.Customer customer = 2;</code>
+       * <code>repeated .trrp_3.Customer items = 1;</code>
        */
-      public trrp_3.CustomerProtos.Customer getCustomer(int index) {
-        if (customerBuilder_ == null) {
-          return customer_.get(index);
+      public trrp_3.CustomerProtos.Customer getItems(int index) {
+        if (itemsBuilder_ == null) {
+          return items_.get(index);
         } else {
-          return customerBuilder_.getMessage(index);
+          return itemsBuilder_.getMessage(index);
         }
       }
       /**
-       * <code>repeated .trrp_3.Customer customer = 2;</code>
+       * <code>repeated .trrp_3.Customer items = 1;</code>
        */
-      public Builder setCustomer(
+      public Builder setItems(
           int index, trrp_3.CustomerProtos.Customer value) {
-        if (customerBuilder_ == null) {
+        if (itemsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureCustomerIsMutable();
-          customer_.set(index, value);
+          ensureItemsIsMutable();
+          items_.set(index, value);
           onChanged();
         } else {
-          customerBuilder_.setMessage(index, value);
+          itemsBuilder_.setMessage(index, value);
         }
         return this;
       }
       /**
-       * <code>repeated .trrp_3.Customer customer = 2;</code>
+       * <code>repeated .trrp_3.Customer items = 1;</code>
        */
-      public Builder setCustomer(
+      public Builder setItems(
           int index, trrp_3.CustomerProtos.Customer.Builder builderForValue) {
-        if (customerBuilder_ == null) {
-          ensureCustomerIsMutable();
-          customer_.set(index, builderForValue.build());
+        if (itemsBuilder_ == null) {
+          ensureItemsIsMutable();
+          items_.set(index, builderForValue.build());
           onChanged();
         } else {
-          customerBuilder_.setMessage(index, builderForValue.build());
+          itemsBuilder_.setMessage(index, builderForValue.build());
         }
         return this;
       }
       /**
-       * <code>repeated .trrp_3.Customer customer = 2;</code>
+       * <code>repeated .trrp_3.Customer items = 1;</code>
        */
-      public Builder addCustomer(trrp_3.CustomerProtos.Customer value) {
-        if (customerBuilder_ == null) {
+      public Builder addItems(trrp_3.CustomerProtos.Customer value) {
+        if (itemsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureCustomerIsMutable();
-          customer_.add(value);
+          ensureItemsIsMutable();
+          items_.add(value);
           onChanged();
         } else {
-          customerBuilder_.addMessage(value);
+          itemsBuilder_.addMessage(value);
         }
         return this;
       }
       /**
-       * <code>repeated .trrp_3.Customer customer = 2;</code>
+       * <code>repeated .trrp_3.Customer items = 1;</code>
        */
-      public Builder addCustomer(
+      public Builder addItems(
           int index, trrp_3.CustomerProtos.Customer value) {
-        if (customerBuilder_ == null) {
+        if (itemsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureCustomerIsMutable();
-          customer_.add(index, value);
+          ensureItemsIsMutable();
+          items_.add(index, value);
           onChanged();
         } else {
-          customerBuilder_.addMessage(index, value);
+          itemsBuilder_.addMessage(index, value);
         }
         return this;
       }
       /**
-       * <code>repeated .trrp_3.Customer customer = 2;</code>
+       * <code>repeated .trrp_3.Customer items = 1;</code>
        */
-      public Builder addCustomer(
+      public Builder addItems(
           trrp_3.CustomerProtos.Customer.Builder builderForValue) {
-        if (customerBuilder_ == null) {
-          ensureCustomerIsMutable();
-          customer_.add(builderForValue.build());
+        if (itemsBuilder_ == null) {
+          ensureItemsIsMutable();
+          items_.add(builderForValue.build());
           onChanged();
         } else {
-          customerBuilder_.addMessage(builderForValue.build());
+          itemsBuilder_.addMessage(builderForValue.build());
         }
         return this;
       }
       /**
-       * <code>repeated .trrp_3.Customer customer = 2;</code>
+       * <code>repeated .trrp_3.Customer items = 1;</code>
        */
-      public Builder addCustomer(
+      public Builder addItems(
           int index, trrp_3.CustomerProtos.Customer.Builder builderForValue) {
-        if (customerBuilder_ == null) {
-          ensureCustomerIsMutable();
-          customer_.add(index, builderForValue.build());
+        if (itemsBuilder_ == null) {
+          ensureItemsIsMutable();
+          items_.add(index, builderForValue.build());
           onChanged();
         } else {
-          customerBuilder_.addMessage(index, builderForValue.build());
+          itemsBuilder_.addMessage(index, builderForValue.build());
         }
         return this;
       }
       /**
-       * <code>repeated .trrp_3.Customer customer = 2;</code>
+       * <code>repeated .trrp_3.Customer items = 1;</code>
        */
-      public Builder addAllCustomer(
+      public Builder addAllItems(
           java.lang.Iterable<? extends trrp_3.CustomerProtos.Customer> values) {
-        if (customerBuilder_ == null) {
-          ensureCustomerIsMutable();
+        if (itemsBuilder_ == null) {
+          ensureItemsIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, customer_);
+              values, items_);
           onChanged();
         } else {
-          customerBuilder_.addAllMessages(values);
+          itemsBuilder_.addAllMessages(values);
         }
         return this;
       }
       /**
-       * <code>repeated .trrp_3.Customer customer = 2;</code>
+       * <code>repeated .trrp_3.Customer items = 1;</code>
        */
-      public Builder clearCustomer() {
-        if (customerBuilder_ == null) {
-          customer_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000002);
+      public Builder clearItems() {
+        if (itemsBuilder_ == null) {
+          items_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
           onChanged();
         } else {
-          customerBuilder_.clear();
+          itemsBuilder_.clear();
         }
         return this;
       }
       /**
-       * <code>repeated .trrp_3.Customer customer = 2;</code>
+       * <code>repeated .trrp_3.Customer items = 1;</code>
        */
-      public Builder removeCustomer(int index) {
-        if (customerBuilder_ == null) {
-          ensureCustomerIsMutable();
-          customer_.remove(index);
+      public Builder removeItems(int index) {
+        if (itemsBuilder_ == null) {
+          ensureItemsIsMutable();
+          items_.remove(index);
           onChanged();
         } else {
-          customerBuilder_.remove(index);
+          itemsBuilder_.remove(index);
         }
         return this;
       }
       /**
-       * <code>repeated .trrp_3.Customer customer = 2;</code>
+       * <code>repeated .trrp_3.Customer items = 1;</code>
        */
-      public trrp_3.CustomerProtos.Customer.Builder getCustomerBuilder(
+      public trrp_3.CustomerProtos.Customer.Builder getItemsBuilder(
           int index) {
-        return getCustomerFieldBuilder().getBuilder(index);
+        return getItemsFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .trrp_3.Customer customer = 2;</code>
+       * <code>repeated .trrp_3.Customer items = 1;</code>
        */
-      public trrp_3.CustomerProtos.CustomerOrBuilder getCustomerOrBuilder(
+      public trrp_3.CustomerProtos.CustomerOrBuilder getItemsOrBuilder(
           int index) {
-        if (customerBuilder_ == null) {
-          return customer_.get(index);  } else {
-          return customerBuilder_.getMessageOrBuilder(index);
+        if (itemsBuilder_ == null) {
+          return items_.get(index);  } else {
+          return itemsBuilder_.getMessageOrBuilder(index);
         }
       }
       /**
-       * <code>repeated .trrp_3.Customer customer = 2;</code>
+       * <code>repeated .trrp_3.Customer items = 1;</code>
        */
       public java.util.List<? extends trrp_3.CustomerProtos.CustomerOrBuilder> 
-           getCustomerOrBuilderList() {
-        if (customerBuilder_ != null) {
-          return customerBuilder_.getMessageOrBuilderList();
+           getItemsOrBuilderList() {
+        if (itemsBuilder_ != null) {
+          return itemsBuilder_.getMessageOrBuilderList();
         } else {
-          return java.util.Collections.unmodifiableList(customer_);
+          return java.util.Collections.unmodifiableList(items_);
         }
       }
       /**
-       * <code>repeated .trrp_3.Customer customer = 2;</code>
+       * <code>repeated .trrp_3.Customer items = 1;</code>
        */
-      public trrp_3.CustomerProtos.Customer.Builder addCustomerBuilder() {
-        return getCustomerFieldBuilder().addBuilder(
+      public trrp_3.CustomerProtos.Customer.Builder addItemsBuilder() {
+        return getItemsFieldBuilder().addBuilder(
             trrp_3.CustomerProtos.Customer.getDefaultInstance());
       }
       /**
-       * <code>repeated .trrp_3.Customer customer = 2;</code>
+       * <code>repeated .trrp_3.Customer items = 1;</code>
        */
-      public trrp_3.CustomerProtos.Customer.Builder addCustomerBuilder(
+      public trrp_3.CustomerProtos.Customer.Builder addItemsBuilder(
           int index) {
-        return getCustomerFieldBuilder().addBuilder(
+        return getItemsFieldBuilder().addBuilder(
             index, trrp_3.CustomerProtos.Customer.getDefaultInstance());
       }
       /**
-       * <code>repeated .trrp_3.Customer customer = 2;</code>
+       * <code>repeated .trrp_3.Customer items = 1;</code>
        */
       public java.util.List<trrp_3.CustomerProtos.Customer.Builder> 
-           getCustomerBuilderList() {
-        return getCustomerFieldBuilder().getBuilderList();
+           getItemsBuilderList() {
+        return getItemsFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
           trrp_3.CustomerProtos.Customer, trrp_3.CustomerProtos.Customer.Builder, trrp_3.CustomerProtos.CustomerOrBuilder> 
-          getCustomerFieldBuilder() {
-        if (customerBuilder_ == null) {
-          customerBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+          getItemsFieldBuilder() {
+        if (itemsBuilder_ == null) {
+          itemsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               trrp_3.CustomerProtos.Customer, trrp_3.CustomerProtos.Customer.Builder, trrp_3.CustomerProtos.CustomerOrBuilder>(
-                  customer_,
-                  ((bitField0_ & 0x00000002) != 0),
+                  items_,
+                  ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
-          customer_ = null;
+          items_ = null;
         }
-        return customerBuilder_;
+        return itemsBuilder_;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -3080,41 +2713,41 @@ public final class CustomerProtos {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:trrp_3.Organization)
+      // @@protoc_insertion_point(builder_scope:trrp_3.ListCustomers)
     }
 
-    // @@protoc_insertion_point(class_scope:trrp_3.Organization)
-    private static final trrp_3.CustomerProtos.Organization DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:trrp_3.ListCustomers)
+    private static final trrp_3.CustomerProtos.ListCustomers DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new trrp_3.CustomerProtos.Organization();
+      DEFAULT_INSTANCE = new trrp_3.CustomerProtos.ListCustomers();
     }
 
-    public static trrp_3.CustomerProtos.Organization getDefaultInstance() {
+    public static trrp_3.CustomerProtos.ListCustomers getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    @java.lang.Deprecated public static final com.google.protobuf.Parser<Organization>
-        PARSER = new com.google.protobuf.AbstractParser<Organization>() {
+    private static final com.google.protobuf.Parser<ListCustomers>
+        PARSER = new com.google.protobuf.AbstractParser<ListCustomers>() {
       @java.lang.Override
-      public Organization parsePartialFrom(
+      public ListCustomers parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Organization(input, extensionRegistry);
+        return new ListCustomers(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<Organization> parser() {
+    public static com.google.protobuf.Parser<ListCustomers> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<Organization> getParserForType() {
+    public com.google.protobuf.Parser<ListCustomers> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public trrp_3.CustomerProtos.Organization getDefaultInstanceForType() {
+    public trrp_3.CustomerProtos.ListCustomers getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -3131,10 +2764,10 @@ public final class CustomerProtos {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_trrp_3_Customer_EmailAddress_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_trrp_3_Organization_descriptor;
+    internal_static_trrp_3_ListCustomers_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_trrp_3_Organization_fieldAccessorTable;
+      internal_static_trrp_3_ListCustomers_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -3144,15 +2777,15 @@ public final class CustomerProtos {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\016customer.proto\022\006trrp_3\"\354\001\n\010Customer\022\n\n" +
-      "\002id\030\001 \002(\005\022\021\n\tfirstName\030\002 \002(\t\022\020\n\010lastName" +
-      "\030\003 \002(\t\022,\n\005email\030\005 \003(\0132\035.trrp_3.Customer." +
-      "EmailAddress\032U\n\014EmailAddress\022\r\n\005email\030\001 " +
-      "\002(\t\0226\n\004type\030\002 \001(\0162\032.trrp_3.Customer.Emai" +
-      "lType:\014PROFESSIONAL\"*\n\tEmailType\022\013\n\007PRIV" +
-      "ATE\020\001\022\020\n\014PROFESSIONAL\020\002\"@\n\014Organization\022" +
-      "\014\n\004name\030\001 \002(\t\022\"\n\010customer\030\002 \003(\0132\020.trrp_3" +
-      ".CustomerB\030\n\006trrp_3B\016CustomerProtos"
+      "\n\016customer.proto\022\006trrp_3\"\337\001\n\010Customer\022\n\n" +
+      "\002id\030\001 \001(\005\022\021\n\tfirstName\030\002 \001(\t\022\020\n\010lastName" +
+      "\030\003 \001(\t\022-\n\006emails\030\004 \003(\0132\035.trrp_3.Customer" +
+      ".EmailAddress\032G\n\014EmailAddress\022\r\n\005email\030\001" +
+      " \001(\t\022(\n\004type\030\002 \001(\0162\032.trrp_3.Customer.Ema" +
+      "ilType\"*\n\tEmailType\022\020\n\014PROFESSIONAL\020\000\022\013\n" +
+      "\007PRIVATE\020\001\"0\n\rListCustomers\022\037\n\005items\030\001 \003" +
+      "(\0132\020.trrp_3.CustomerB\030\n\006trrp_3B\016Customer" +
+      "Protosb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -3163,19 +2796,19 @@ public final class CustomerProtos {
     internal_static_trrp_3_Customer_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_trrp_3_Customer_descriptor,
-        new java.lang.String[] { "Id", "FirstName", "LastName", "Email", });
+        new java.lang.String[] { "Id", "FirstName", "LastName", "Emails", });
     internal_static_trrp_3_Customer_EmailAddress_descriptor =
       internal_static_trrp_3_Customer_descriptor.getNestedTypes().get(0);
     internal_static_trrp_3_Customer_EmailAddress_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_trrp_3_Customer_EmailAddress_descriptor,
         new java.lang.String[] { "Email", "Type", });
-    internal_static_trrp_3_Organization_descriptor =
+    internal_static_trrp_3_ListCustomers_descriptor =
       getDescriptor().getMessageTypes().get(1);
-    internal_static_trrp_3_Organization_fieldAccessorTable = new
+    internal_static_trrp_3_ListCustomers_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_trrp_3_Organization_descriptor,
-        new java.lang.String[] { "Name", "Customer", });
+        internal_static_trrp_3_ListCustomers_descriptor,
+        new java.lang.String[] { "Items", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

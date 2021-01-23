@@ -1,2 +1,2 @@
-5, Arthur, Miller, amiller@email.com
-6, Kate, Vasyova, kvasyova@email.com
+Arthur, Miller, amiller@email.com
+Kate, Vasyova, kvasyova@email.com

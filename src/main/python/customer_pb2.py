@@ -16,10 +16,10 @@ _sym_db = _symbol_database.Default()
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='customer.proto',
   package='trrp_3',
-  syntax='proto2',
+  syntax='proto3',
   serialized_options=b'\n\006trrp_3B\016CustomerProtos',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0e\x63ustomer.proto\x12\x06trrp_3\"\xec\x01\n\x08\x43ustomer\x12\n\n\x02id\x18\x01 \x02(\x05\x12\x11\n\tfirstName\x18\x02 \x02(\t\x12\x10\n\x08lastName\x18\x03 \x02(\t\x12,\n\x05\x65mail\x18\x05 \x03(\x0b\x32\x1d.trrp_3.Customer.EmailAddress\x1aU\n\x0c\x45mailAddress\x12\r\n\x05\x65mail\x18\x01 \x02(\t\x12\x36\n\x04type\x18\x02 \x01(\x0e\x32\x1a.trrp_3.Customer.EmailType:\x0cPROFESSIONAL\"*\n\tEmailType\x12\x0b\n\x07PRIVATE\x10\x01\x12\x10\n\x0cPROFESSIONAL\x10\x02\"@\n\x0cOrganization\x12\x0c\n\x04name\x18\x01 \x02(\t\x12\"\n\x08\x63ustomer\x18\x02 \x03(\x0b\x32\x10.trrp_3.CustomerB\x18\n\x06trrp_3B\x0e\x43ustomerProtos'
+  serialized_pb=b'\n\x0e\x63ustomer.proto\x12\x06trrp_3\"\xdf\x01\n\x08\x43ustomer\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x11\n\tfirstName\x18\x02 \x01(\t\x12\x10\n\x08lastName\x18\x03 \x01(\t\x12-\n\x06\x65mails\x18\x04 \x03(\x0b\x32\x1d.trrp_3.Customer.EmailAddress\x1aG\n\x0c\x45mailAddress\x12\r\n\x05\x65mail\x18\x01 \x01(\t\x12(\n\x04type\x18\x02 \x01(\x0e\x32\x1a.trrp_3.Customer.EmailType\"*\n\tEmailType\x12\x10\n\x0cPROFESSIONAL\x10\x00\x12\x0b\n\x07PRIVATE\x10\x01\"0\n\rListCustomers\x12\x1f\n\x05items\x18\x01 \x03(\x0b\x32\x10.trrp_3.CustomerB\x18\n\x06trrp_3B\x0e\x43ustomerProtosb\x06proto3'
 )
 
 
@@ -32,20 +32,20 @@ _CUSTOMER_EMAILTYPE = _descriptor.EnumDescriptor(
   create_key=_descriptor._internal_create_key,
   values=[
     _descriptor.EnumValueDescriptor(
-      name='PRIVATE', index=0, number=1,
+      name='PROFESSIONAL', index=0, number=0,
       serialized_options=None,
       type=None,
       create_key=_descriptor._internal_create_key),
     _descriptor.EnumValueDescriptor(
-      name='PROFESSIONAL', index=1, number=2,
+      name='PRIVATE', index=1, number=1,
       serialized_options=None,
       type=None,
       create_key=_descriptor._internal_create_key),
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=221,
-  serialized_end=263,
+  serialized_start=208,
+  serialized_end=250,
 )
 _sym_db.RegisterEnumDescriptor(_CUSTOMER_EMAILTYPE)
 
@@ -60,7 +60,7 @@ _CUSTOMER_EMAILADDRESS = _descriptor.Descriptor(
   fields=[
     _descriptor.FieldDescriptor(
       name='email', full_name='trrp_3.Customer.EmailAddress.email', index=0,
-      number=1, type=9, cpp_type=9, label=2,
+      number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -68,7 +68,7 @@ _CUSTOMER_EMAILADDRESS = _descriptor.Descriptor(
     _descriptor.FieldDescriptor(
       name='type', full_name='trrp_3.Customer.EmailAddress.type', index=1,
       number=2, type=14, cpp_type=8, label=1,
-      has_default_value=True, default_value=2,
+      has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
@@ -80,12 +80,12 @@ _CUSTOMER_EMAILADDRESS = _descriptor.Descriptor(
   ],
   serialized_options=None,
   is_extendable=False,
-  syntax='proto2',
+  syntax='proto3',
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=134,
-  serialized_end=219,
+  serialized_start=135,
+  serialized_end=206,
 )
 
 _CUSTOMER = _descriptor.Descriptor(
@@ -98,28 +98,28 @@ _CUSTOMER = _descriptor.Descriptor(
   fields=[
     _descriptor.FieldDescriptor(
       name='id', full_name='trrp_3.Customer.id', index=0,
-      number=1, type=5, cpp_type=1, label=2,
+      number=1, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='firstName', full_name='trrp_3.Customer.firstName', index=1,
-      number=2, type=9, cpp_type=9, label=2,
+      number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
       name='lastName', full_name='trrp_3.Customer.lastName', index=2,
-      number=3, type=9, cpp_type=9, label=2,
+      number=3, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='email', full_name='trrp_3.Customer.email', index=3,
-      number=5, type=11, cpp_type=10, label=3,
+      name='emails', full_name='trrp_3.Customer.emails', index=3,
+      number=4, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -133,33 +133,26 @@ _CUSTOMER = _descriptor.Descriptor(
   ],
   serialized_options=None,
   is_extendable=False,
-  syntax='proto2',
+  syntax='proto3',
   extension_ranges=[],
   oneofs=[
   ],
   serialized_start=27,
-  serialized_end=263,
+  serialized_end=250,
 )
 
 
-_ORGANIZATION = _descriptor.Descriptor(
-  name='Organization',
-  full_name='trrp_3.Organization',
+_LISTCUSTOMERS = _descriptor.Descriptor(
+  name='ListCustomers',
+  full_name='trrp_3.ListCustomers',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='name', full_name='trrp_3.Organization.name', index=0,
-      number=1, type=9, cpp_type=9, label=2,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='customer', full_name='trrp_3.Organization.customer', index=1,
-      number=2, type=11, cpp_type=10, label=3,
+      name='items', full_name='trrp_3.ListCustomers.items', index=0,
+      number=1, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -172,21 +165,21 @@ _ORGANIZATION = _descriptor.Descriptor(
   ],
   serialized_options=None,
   is_extendable=False,
-  syntax='proto2',
+  syntax='proto3',
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=265,
-  serialized_end=329,
+  serialized_start=252,
+  serialized_end=300,
 )
 
 _CUSTOMER_EMAILADDRESS.fields_by_name['type'].enum_type = _CUSTOMER_EMAILTYPE
 _CUSTOMER_EMAILADDRESS.containing_type = _CUSTOMER
-_CUSTOMER.fields_by_name['email'].message_type = _CUSTOMER_EMAILADDRESS
+_CUSTOMER.fields_by_name['emails'].message_type = _CUSTOMER_EMAILADDRESS
 _CUSTOMER_EMAILTYPE.containing_type = _CUSTOMER
-_ORGANIZATION.fields_by_name['customer'].message_type = _CUSTOMER
+_LISTCUSTOMERS.fields_by_name['items'].message_type = _CUSTOMER
 DESCRIPTOR.message_types_by_name['Customer'] = _CUSTOMER
-DESCRIPTOR.message_types_by_name['Organization'] = _ORGANIZATION
+DESCRIPTOR.message_types_by_name['ListCustomers'] = _LISTCUSTOMERS
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 Customer = _reflection.GeneratedProtocolMessageType('Customer', (_message.Message,), {
@@ -204,12 +197,12 @@ Customer = _reflection.GeneratedProtocolMessageType('Customer', (_message.Messag
 _sym_db.RegisterMessage(Customer)
 _sym_db.RegisterMessage(Customer.EmailAddress)
 
-Organization = _reflection.GeneratedProtocolMessageType('Organization', (_message.Message,), {
-  'DESCRIPTOR' : _ORGANIZATION,
+ListCustomers = _reflection.GeneratedProtocolMessageType('ListCustomers', (_message.Message,), {
+  'DESCRIPTOR' : _LISTCUSTOMERS,
   '__module__' : 'customer_pb2'
-  # @@protoc_insertion_point(class_scope:trrp_3.Organization)
+  # @@protoc_insertion_point(class_scope:trrp_3.ListCustomers)
   })
-_sym_db.RegisterMessage(Organization)
+_sym_db.RegisterMessage(ListCustomers)
 
 
 DESCRIPTOR._options = None

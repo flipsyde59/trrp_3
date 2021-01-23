@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
 public class CustomerRepositoryImpl implements CustomerRepository {
 
 
-// Хранилище клиентов
     private CustomerProtos.Customer Customer(int id, String f, String l, Collection<String> emails) {
     Collection<CustomerProtos.Customer.EmailAddress> emailAddresses =
             emails.stream().map(e -> CustomerProtos.Customer.EmailAddress.newBuilder()
@@ -23,24 +22,26 @@ public class CustomerRepositoryImpl implements CustomerRepository {
             .setFirstName(f)
             .setLastName(l)
             .setId(id)
-            .addAllEmail(emailAddresses)
+            .addAllEmails(emailAddresses)
             .build();
 }
     private static final Map<Integer, CustomerProtos.Customer> CUSTOMER_REPOSITORY_MAP = new HashMap<>();
+
     CustomerRepositoryImpl() {
         Arrays.asList(
-                Customer(1, "Chris", "Richardson", Arrays.asList("crichardson@email.com")),
-                Customer(2, "Josh", "Long", Arrays.asList("jlong@email.com")),
-                Customer(3, "Matt", "Stine", Arrays.asList("mstine@email.com")),
-                Customer(4, "Russ", "Miles", Arrays.asList("rmiles@email.com"))
+                Customer(1, "Chris", "Richardson", Collections.singletonList("crichardson@email.com")),
+                Customer(2, "Josh", "Long", Collections.singletonList("jlong@email.com")),
+                Customer(3, "Matt", "Stine", Collections.singletonList("mstine@email.com")),
+                Customer(4, "Russ", "Miles", Collections.singletonList("rmiles@email.com"))
         ).forEach(c -> CUSTOMER_REPOSITORY_MAP.put(c.getId(), c));
     }
 
-    private static final AtomicInteger CUSTOMER_ID_HOLDER = new AtomicInteger();
+    private static final AtomicInteger CUSTOMER_ID_HOLDER = new AtomicInteger(4);
 
     @Override
     public void create(CustomerProtos.Customer customer) {
         final int customerId = CUSTOMER_ID_HOLDER.incrementAndGet();
+        customer = customer.toBuilder().setId(customerId).build();
         CUSTOMER_REPOSITORY_MAP.put(customerId, customer);
     }
 
