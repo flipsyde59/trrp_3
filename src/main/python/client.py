@@ -2,6 +2,8 @@
 
 import requests as req
 import customer_pb2
+import json
+
 
 customer = customer_pb2.Customer()
 listCustomers = customer_pb2.ListCustomers()
@@ -18,7 +20,7 @@ def read_from_file():
         customer.lastName = l[2]
         emailAddress.email = l[3]
         customer.emails.append(emailAddress)
-        resp = req.request('POST', 'http://localhost:8080/customers', data=customer.SerializeToString(),
+        resp = req.request('POST', f'http://{host}:{port}/customers', data=customer.SerializeToString(),
                            headers={'X-Protobuf-Schema': 'customer.proto',
                                     'X-Protobuf-Message': 'trrp_3.Customer',
                                     'Content-Type': 'application/x-protobuf;charset=UTF-8'})
@@ -31,7 +33,7 @@ def read_from_file():
 
 
 def update(id):
-    resp = req.request('PUT', f'http://localhost:8080/customers/{id}', data=customer.SerializeToString(),
+    resp = req.request('PUT', f'http://{host}:{port}/customers/{id}', data=customer.SerializeToString(),
                        headers={'X-Protobuf-Schema': 'customer.proto',
                                 'X-Protobuf-Message': 'trrp_3.Customer',
                                 'Content-Type': 'application/x-protobuf;charset=UTF-8'})
@@ -40,7 +42,7 @@ def update(id):
 
 
 def requests():
-    resp = req.request("GET", 'http://localhost:8080/customers')
+    resp = req.request("GET", f'http://{host}:{port}/customers')
     listCustomers.ParseFromString(resp.content)
     if len(listCustomers.items)>0:
         print("Данные в базе:\n", listCustomers.items)
@@ -52,7 +54,7 @@ def requests():
     n = input("Вывести данные одного клиента? (Да/Нет): ")
     if "Д" in n.upper():
         id = int(input("Введите id клиента: "))
-        resp = req.request("GET", f'http://localhost:8080/customers/{id}')
+        resp = req.request("GET", f'http://{host}:{port}/customers/{id}')
         if resp.ok:
             customer.ParseFromString(resp.content)
             print(customer)
@@ -84,7 +86,7 @@ def requests():
                     else:
                         print("Выход из меню")
                         flag = False
-                        resp = req.request("GET", 'http://localhost:8080/customers')
+                        resp = req.request("GET", f'http://{host}:{port}/customers')
                         listCustomers.ParseFromString(resp.content)
                         print("Данные в базе:\n", listCustomers.items)
         else:
@@ -92,7 +94,7 @@ def requests():
     n = input("Удалить клиента? (Да/Нет): ")
     if "Д" in n.upper():
         id = int(input("Введите id клиента: "))
-        resp = req.request("DELETE", f'http://localhost:8080/customers/{id}')
+        resp = req.request("DELETE", f'http://{host}:{port}/customers/{id}')
         if resp.ok:
             print("Клиент удалён")
         else:
@@ -103,6 +105,22 @@ def requests():
     else:
         return False
 
+def tryConnect():
+    try:
+        resp = req.request('GET', f'http://{host}:{port}/customers')
+        if resp.ok:
+            print("Подключение установлено")
+        return True
+    except req.exceptions.ConnectionError:
+        print("Подключение отклонено проверьте адрес и порт")
+        return False
+
 if __name__ == '__main__':
-    while requests():
-        print()
+    f = open('config.json')
+    j = json.loads(f.read())
+    f.close()
+    host = j['host']
+    port = j['port']
+    if tryConnect():
+        while requests():
+            print()
