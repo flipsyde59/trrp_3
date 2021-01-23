@@ -16,9 +16,9 @@ def read_from_file():
         number_line = 1
         l = line.split(', ')
         customer.id = 0
-        customer.firstName = l[1]
-        customer.lastName = l[2]
-        emailAddress.email = l[3]
+        customer.firstName = l[0]
+        customer.lastName = l[1]
+        emailAddress.email = l[2]
         customer.emails.append(emailAddress)
         resp = req.request('POST', f'http://{host}:{port}/customers', data=customer.SerializeToString(),
                            headers={'X-Protobuf-Schema': 'customer.proto',
@@ -121,6 +121,12 @@ if __name__ == '__main__':
     f.close()
     host = j['host']
     port = j['port']
-    if tryConnect():
-        while requests():
-            print()
+
+    resp = req.request('POST', f'http://{host}:{port}/customers', data="customer.SerializeToString()",
+                       headers={'X-Protobuf-Schema': 'customer.proto',
+                                'X-Protobuf-Message': 'trrp_3.Customer',
+                                'Content-Type': 'application/x-protobuf;charset=UTF-8'})
+    print(resp.content)
+    #if tryConnect():
+    #    while requests():
+    #        print()
