@@ -42,7 +42,10 @@ def update(id):
 def requests():
     resp = req.request("GET", 'http://localhost:8080/customers')
     listCustomers.ParseFromString(resp.content)
-    print("Данные в базе:\n", listCustomers.items)
+    if len(listCustomers.items)>0:
+        print("Данные в базе:\n", listCustomers.items)
+    else:
+        print("В базе на сервере пусто :(")
     n = input("Внести данные из файла? (Да/Нет): ")
     if "Д" in n.upper():
         read_from_file()
