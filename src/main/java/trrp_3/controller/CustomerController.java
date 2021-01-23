@@ -15,56 +15,44 @@ public class CustomerController {
     @Autowired
     private final CustomerRepository customerRepository;
 
-//    @RequestMapping("/customers/{id}")
-//    CustomerProtos.Customer customer(@PathVariable Integer id) {
-//        return this.customerRepository.findById(id);
-//    }
-//
-//    @RequestMapping("/customers/new")
-//    String addCustomer(@RequestBody CustomerProtos.Customer customer) {
-//        customerRepository.save(customer);
-//        return "Saved";
-//    }
-
     @Autowired
     public CustomerController(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
 
-    @PostMapping(value = "/clients")
+    @PostMapping(value = "/customers")
     public ResponseEntity<?> create(@RequestBody CustomerProtos.Customer customer) {
         customerRepository.create(customer);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @GetMapping(value = "/clients")
+    @GetMapping(value = "/customers")
     public ResponseEntity<List<CustomerProtos.Customer>> read() {
-        final List<CustomerProtos.Customer> clients = customerRepository.readAll();
+        final List<CustomerProtos.Customer> customers = customerRepository.readAll();
 
-        return clients != null &&  !clients.isEmpty()
-                ? new ResponseEntity<>(clients, HttpStatus.OK)
+        return customers != null &&  !customers.isEmpty()
+                ? new ResponseEntity<>(customers, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping(value = "/clients/{id}")
+    @GetMapping(value = "/customers/{id}")
     public ResponseEntity<CustomerProtos.Customer> read(@PathVariable(name = "id") int id) {
-        final CustomerProtos.Customer client = customerRepository.read(id);
-
-        return client != null
-                ? new ResponseEntity<>(client, HttpStatus.OK)
+        final CustomerProtos.Customer customer = customerRepository.read(id);
+        return customer != null
+                ? new ResponseEntity<>(customer, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PutMapping(value = "/clients/{id}")
-    public ResponseEntity<?> update(@PathVariable(name = "id") int id, @RequestBody CustomerProtos.Customer client) {
-        final boolean updated = customerRepository.update(client, id);
+    @PutMapping(value = "/customers/{id}")
+    public ResponseEntity<?> update(@PathVariable(name = "id") int id, @RequestBody CustomerProtos.Customer customer) {
+        final boolean updated = customerRepository.update(customer, id);
 
         return updated
                 ? new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
-    @DeleteMapping(value = "/clients/{id}")
+    @DeleteMapping(value = "/customers/{id}")
     public ResponseEntity<?> delete(@PathVariable(name = "id") int id) {
         final boolean deleted = customerRepository.delete(id);
 
